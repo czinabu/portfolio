@@ -5,312 +5,349 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Caleb Zinabu</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Caleb Zinabu, Wichita, KS. Short-form video for local restaurants and small AI tools and websites for small businesses.">
+<meta name="description" content="Caleb Zinabu, Wichita, KS. Short-form video for local restaurants, plus small AI tools and websites for small businesses.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>
-/* Layout: one narrow column, a big-number proof strip, then work in plain rows. Sunflower yellow marks only the claims worth proving. */
+/* Layout: a riso-printed community-board flyer. Newsprint paper, black ink, fluoro pink and riso blue overprints.
+   Hero = poster headline + a fan of 9:16 video cards. Services = a restaurant menu board. Contact = tear-off flyer tabs.
+   Deliberately single-theme: the paper look stays the same in light and dark, with every color set explicitly. */
 :root{
-  --bg:#f6f7f9; --surface:#ffffff; --ink:#141a26; --muted:#5a6475; --line:#dde1e8;
-  --sun:#ffc929; --sun-ink:#5a4100; --link:#1d4fd7;
-  --display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
-  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --paper:#ebebe6; --paper-2:#f6f6f2; --ink:#111111; --ink-soft:#3d3d3a;
+  --pink:#ff3f9e; --blue:#0a6fd6; --yellow:#ffd23f;
+  --display:"Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
+  --body:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#0f131b; --surface:#171c27; --ink:#eef1f6; --muted:#9aa4b5; --line:#2a3140;
-  --sun:#ffcf3f; --sun-ink:#ffd65c; --link:#8fb0ff; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#0f131b; --surface:#171c27; --ink:#eef1f6; --muted:#9aa4b5; --line:#2a3140;
-  --sun:#ffcf3f; --sun-ink:#ffd65c; --link:#8fb0ff; color-scheme:dark}
-
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--body);margin:0;-webkit-font-smoothing:antialiased}
-a{color:var(--link);text-underline-offset:3px}
-a:focus-visible,button:focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:4px}
-.wrap{max-width:62rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.08}
-h2{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:800;letter-spacing:-.01em}
-h3{font-size:1.25rem;font-weight:700}
+html{background:var(--paper)}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:68rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;font-family:var(--display);text-transform:uppercase;line-height:.9;text-wrap:balance}
 p{margin:0}
-.eyebrow{font:500 .75rem/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
-.mark{background:linear-gradient(transparent 58%,var(--sun) 58%);color:inherit;padding:0 .08em}
+.label{font:600 .75rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.14em}
+/* overprint: a pink copy of the text sits offset behind black ink */
+.over{position:relative;display:inline-block}
+.over::before{content:attr(data-t);position:absolute;left:.05em;top:.05em;white-space:nowrap;color:var(--pink);z-index:-1;mix-blend-mode:multiply}
 
-header.top{padding-block:20px}
-header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.brand{font:700 1.1rem/1 var(--display);color:var(--ink);text-decoration:none}
-.brand small{font:400 .8rem var(--body);color:var(--muted);margin-left:8px}
-nav{display:flex;gap:20px;flex-wrap:wrap;font-size:.95rem}
-nav a{color:var(--ink);text-decoration:none}
-nav a:hover{text-decoration:underline}
+/* top strip + ticker */
+.strip{background:var(--ink);color:var(--paper-2)}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:10px;flex-wrap:wrap}
+.strip a{text-decoration:none}
+.strip nav{display:flex;gap:18px;flex-wrap:wrap}
+.strip nav a:hover{color:var(--yellow)}
+.ticker{background:var(--yellow);border-block:2px solid var(--ink);overflow:hidden;white-space:nowrap}
+.ticker .track{display:inline-flex;gap:40px;padding-block:8px;font:600 .82rem/1 var(--mono);text-transform:uppercase;letter-spacing:.1em}
+.ticker .track span::before{content:"▶ ";color:var(--pink)}
+@media (prefers-reduced-motion:no-preference){.ticker .track{animation:tick 38s linear infinite}@keyframes tick{to{transform:translateX(-50%)}}}
 
-.hero{padding-block:56px 40px}
-.hero h1{font-size:clamp(2.3rem,6.2vw,4.2rem);font-weight:800;letter-spacing:-.025em;max-width:16ch}
-.hero .lede{margin-top:24px;max-width:58ch;font-size:1.15rem;color:var(--muted)}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font:600 1rem var(--body);text-decoration:none;border:2px solid var(--ink);cursor:pointer}
-.btn.primary{background:var(--ink);color:var(--bg)}
-.btn.ghost{background:transparent;color:var(--ink)}
+/* hero */
+.hero{padding-block:48px 72px;position:relative;isolation:isolate}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero h1{font-size:clamp(4.2rem,12vw,9.5rem);font-weight:900;letter-spacing:-.005em}
+.hero h1 .sm{display:block;font-size:.42em;font-weight:800;letter-spacing:.01em;margin-bottom:.12em}
+.hero h1 .blue{color:var(--blue)}
+.hero .lede{margin-top:24px;max-width:44ch;font-size:1.15rem;color:var(--ink-soft)}
+.hero .lede b{color:var(--ink);background:var(--yellow);padding:0 .2em}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;padding:13px 22px;font:700 1rem var(--body);text-decoration:none;border:2.5px solid var(--ink);background:var(--paper-2);color:var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer}
+.btn.pink{background:var(--pink);color:var(--ink)}
+@media (prefers-reduced-motion:no-preference){.btn{transition:transform .12s,box-shadow .12s}.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}}
 
-.proof{border-block:1px solid var(--line);padding-block:32px}
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.stat b{display:block;font:800 clamp(2rem,4.6vw,3rem)/1 var(--display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.stat span{display:block;margin-top:8px;font-size:.92rem;color:var(--muted);max-width:22ch}
-.proof .note{margin-top:20px;font-size:.92rem;color:var(--muted);max-width:70ch}
+/* fan of 9:16 video cards */
+.reels{position:relative;height:clamp(340px,42vw,460px);max-width:100%}
+.reel{position:absolute;width:clamp(150px,19vw,210px);aspect-ratio:9/16;border:3px solid var(--ink);border-radius:18px;background:var(--ink);color:#fff;overflow:hidden;box-shadow:8px 8px 0 rgba(17,17,17,.9);display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
+.reel::before{content:"";position:absolute;inset:0;z-index:0}
+.reel>*{position:relative;z-index:1}
+.reel .views{font:900 clamp(2.2rem,4vw,3rem)/.9 var(--display);display:flex;align-items:center;gap:6px}
+.reel .views::before{content:"";width:0;height:0;border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent}
+.reel .cap{font:500 .78rem/1.35 var(--body);margin-top:8px;opacity:.92}
+.reel .tag{position:absolute;top:12px;left:12px;font:600 .66rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--ink);padding:5px 7px;border-radius:4px}
+.r1{left:0;top:40px;transform:rotate(-7deg)}
+.r1::before{background:radial-gradient(circle at 30% 25%,var(--pink),transparent 60%),linear-gradient(160deg,#2b1630,#111)}
+.r2{left:30%;top:0;transform:rotate(2deg);z-index:2}
+.r2::before{background:radial-gradient(circle at 70% 30%,var(--blue),transparent 60%),linear-gradient(200deg,#0d2340,#111)}
+.r3{left:60%;top:56px;transform:rotate(9deg)}
+.r3::before{background:radial-gradient(circle at 40% 30%,var(--yellow),transparent 55%),linear-gradient(170deg,#3a3010,#111)}
+.sticker{position:absolute;right:-6px;bottom:-14px;z-index:5;width:132px;height:132px;border-radius:50%;background:var(--yellow);border:3px solid var(--ink);display:grid;place-items:center;text-align:center;transform:rotate(-12deg);font:900 1.9rem/.85 var(--display);text-transform:uppercase;box-shadow:4px 4px 0 var(--ink)}
+.sticker small{display:block;font:600 .62rem/1.2 var(--mono);letter-spacing:.06em;margin-top:6px}
 
-section.block{padding-block:64px}
-.head{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;max-width:60ch}
-.head p{color:var(--muted)}
+/* section heads */
+.sec{padding-block:72px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:36px;border-bottom:4px solid var(--ink);padding-bottom:14px}
+.sec-head h2{font-size:clamp(2.8rem,7vw,5rem);font-weight:900}
+.sec-head .label{color:var(--ink-soft)}
 
-.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
-.svc{background:var(--surface);padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.svc .eyebrow{color:var(--sun-ink)}
-.svc p{color:var(--muted)}
-.svc.lead{grid-column:1/-1}
-.svc.lead h3{font-size:1.6rem}
-.svc ul{margin:4px 0 0;padding-left:1.1em;color:var(--muted)}
-.svc li+li{margin-top:4px}
+/* menu board */
+.board{background:var(--ink);color:var(--paper-2);border-radius:6px;padding:clamp(24px,4vw,48px);box-shadow:10px 10px 0 var(--blue);position:relative}
+.board .title{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:2px dashed rgba(246,246,242,.35);padding-bottom:16px;margin-bottom:8px}
+.board .title h3{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--yellow)}
+.board .title .label{color:rgba(246,246,242,.65)}
+.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;padding-block:20px;border-bottom:1px solid rgba(246,246,242,.15)}
+.item:last-child{border-bottom:0}
+.item h4{margin:0;font:800 clamp(1.35rem,2.6vw,1.7rem)/1.05 var(--display);text-transform:uppercase;letter-spacing:.02em;display:flex;align-items:baseline;gap:10px;min-width:0}
+.item h4::after{content:"";flex:1;border-bottom:3px dotted rgba(246,246,242,.4);transform:translateY(-4px);min-width:24px}
+.item .price{font:600 .85rem/1.6 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--yellow);align-self:baseline}
+.item .price.free{color:var(--ink);background:var(--pink);padding:2px 8px}
+.item p{grid-column:1/-1;color:rgba(246,246,242,.78);max-width:68ch}
+.item.special h4{color:var(--pink)}
+.item .chef{display:inline-block;font:600 .66rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;background:var(--pink);color:var(--ink);padding:5px 7px;margin-bottom:8px}
 
-.proj{display:grid;grid-template-columns:11rem minmax(0,1fr);gap:8px 32px;padding-block:28px;border-top:1px solid var(--line)}
-.proj:last-child{border-bottom:1px solid var(--line)}
-.proj .kind{font:500 .75rem/1.5 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding-top:6px}
-.proj .body{display:flex;flex-direction:column;gap:10px;min-width:0}
-.proj .body p{color:var(--muted);max-width:64ch}
-.tags{display:flex;flex-wrap:wrap;gap:6px}
-.tags span{font:400 .78rem/1 var(--mono);padding:6px 8px;border:1px solid var(--line);border-radius:6px;color:var(--muted)}
-.links{display:flex;flex-wrap:wrap;gap:18px;font-weight:600;font-size:.95rem}
-.live{display:inline-flex;align-items:center;gap:6px}
-.live::before{content:"";width:8px;height:8px;border-radius:50%;background:#1fa35b}
+/* projects as pinned cards */
+.pins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 32px}
+.card{background:var(--paper-2);border:2.5px solid var(--ink);padding:26px 24px 22px;position:relative;display:flex;flex-direction:column;gap:12px;min-width:0;box-shadow:6px 6px 0 var(--ink)}
+.card:nth-child(4n+1){transform:rotate(-.8deg)}
+.card:nth-child(4n+2){transform:rotate(.7deg)}
+.card:nth-child(4n+3){transform:rotate(.5deg)}
+.card:nth-child(4n+4){transform:rotate(-.6deg)}
+.card::before{content:"";position:absolute;top:-13px;left:50%;width:84px;height:24px;transform:translateX(-50%) rotate(-3deg);background:rgba(255,210,63,.85);border:1px solid rgba(17,17,17,.15)}
+.card .kind{align-self:flex-start;font:600 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:6px 8px;border:2px solid var(--ink)}
+.card .kind.k-sales{background:var(--blue);color:#fff;border-color:var(--blue)}
+.card .kind.k-ai{background:var(--ink);color:var(--paper-2)}
+.card .kind.k-game{background:var(--pink)}
+.card .kind.k-job{background:var(--yellow)}
+.card h3{font-size:clamp(2rem,3.6vw,2.6rem);font-weight:900}
+.card p{color:var(--ink-soft)}
+.stack{font:500 .78rem/1.5 var(--mono);color:var(--ink-soft)}
+.card .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.card .acts a{font:700 .92rem var(--body);text-decoration:none;border-bottom:2.5px solid var(--ink)}
+.card .acts a.play{background:var(--pink);border:2.5px solid var(--ink);padding:6px 14px;box-shadow:3px 3px 0 var(--ink)}
+.card .acts a.play::before{content:"▶ "}
+.card .acts a:hover{color:var(--blue);border-color:var(--blue)}
+.card .acts a.play:hover{color:var(--ink);border-color:var(--ink);background:var(--yellow)}
+.card.wide{grid-column:1/-1}
 
-.about{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px}
-.about p+p{margin-top:16px}
-.about .col p{color:var(--muted)}
-.kit{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-.kit span{font:500 .85rem/1 var(--body);padding:8px 12px;background:var(--surface);border:1px solid var(--line);border-radius:999px}
+/* about */
+.about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:start}
+.about .txt p{font-size:1.12rem;max-width:58ch}
+.about .txt p+p{margin-top:16px}
+.jobs{list-style:none;margin:0;padding:0;border-top:2.5px solid var(--ink)}
+.jobs li{display:flex;justify-content:space-between;gap:12px;padding-block:12px;border-bottom:1px solid rgba(17,17,17,.25);flex-wrap:wrap}
+.jobs b{font:800 1.25rem/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
+.jobs span{font:500 .8rem/1.6 var(--mono);color:var(--ink-soft)}
+.kit{margin-top:24px;font:500 .82rem/1.9 var(--mono);color:var(--ink-soft)}
+.kit b{color:var(--ink);font-weight:600}
 
-.contact{background:var(--ink);color:var(--bg);padding-block:64px;margin-top:32px}
-.contact h2{color:var(--bg);font-size:clamp(2rem,5vw,3.2rem);max-width:18ch}
-.contact p{color:var(--bg);opacity:.8;margin-top:16px;max-width:56ch}
-.contact .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:28px}
-.email{font:500 1.05rem var(--mono);background:transparent;color:var(--bg);border:2px solid var(--bg);border-radius:999px;padding:12px 20px;user-select:all}
-.contact .btn.primary{background:var(--sun);border-color:var(--sun);color:#141a26}
-.contact .btn.ghost{border-color:var(--bg);color:var(--bg)}
-.contact .meta{margin-top:28px;font-size:.92rem;opacity:.7}
-.contact .meta a{color:var(--bg)}
-#copied{font-size:.9rem;color:var(--sun)}
+/* contact flyer with tear-off tabs */
+.flyer-sec{padding-block:24px 0}
+.flyer{background:var(--pink);border:3px solid var(--ink);border-bottom:0;padding:clamp(28px,5vw,56px) clamp(20px,4vw,48px) 32px;position:relative}
+.flyer h2{font-size:clamp(3rem,9vw,6.5rem);font-weight:900}
+.flyer p{font-size:1.15rem;margin-top:18px;max-width:46ch}
+.flyer .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:26px}
+.flyer .row .btn{background:var(--paper-2)}
+#copied{font:600 .85rem var(--mono)}
+.tabs{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));border:3px solid var(--ink);border-top:2px dashed var(--ink);background:var(--paper-2)}
+.tab{appearance:none;border:0;border-right:2px dashed var(--ink);background:transparent;padding:14px 4px;height:170px;cursor:pointer;color:var(--ink);display:flex;align-items:center;justify-content:center}
+.tab:last-child{border-right:0}
+.tab span{writing-mode:vertical-rl;transform:rotate(180deg);font:600 .78rem/1.2 var(--mono);white-space:nowrap}
+.tab span b{display:block;font:800 .95rem/1.1 var(--display);text-transform:uppercase;letter-spacing:.04em}
+.tab:hover{background:var(--yellow)}
+@media (prefers-reduced-motion:no-preference){.tab{transition:transform .15s}.tab:hover{transform:rotate(2deg) translateY(4px)}}
+footer.base{padding-block:28px 40px;font:500 .82rem/1.6 var(--mono);color:var(--ink-soft)}
+footer.base .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 
-@media (max-width:760px){
-  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .services{grid-template-columns:minmax(0,1fr)}
-  .proj{grid-template-columns:minmax(0,1fr)}
-  .proj .kind{padding-top:0}
+@media (max-width:860px){
+  .hero .grid{grid-template-columns:minmax(0,1fr)}
+  .reels{height:380px;max-width:440px;margin-inline:auto;width:100%}
+  .pins{grid-template-columns:minmax(0,1fr)}
   .about{grid-template-columns:minmax(0,1fr);gap:32px}
-  nav{display:none}
+  .tabs{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .tab:nth-child(n+5){display:none}
+  .tab:nth-child(4){border-right:0}
 }
-@media (prefers-reduced-motion:no-preference){.btn{transition:transform .15s}.btn:hover{transform:translateY(-1px)}}
+@media (max-width:520px){
+  .strip nav{display:none}
+  .reel{width:136px;padding:10px}
+  .reel .cap{display:none}
+  .sticker{width:108px;height:108px;font-size:1.5rem;right:0}
+  .r2{left:27%}.r3{left:54%}
+}
 </style>
 </head>
 <body>
 
-<header class="top">
+<div class="strip">
   <div class="wrap">
-    <a class="brand" href="#top">Caleb Zinabu<small>Wichita, KS</small></a>
-    <nav aria-label="Sections">
-      <a href="#services">Services</a>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+    <a href="#top" class="label">Caleb Zinabu · Wichita, KS</a>
+    <nav class="label" aria-label="Sections">
+      <a href="#menu">Services</a><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a>
     </nav>
   </div>
-</header>
+</div>
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>2.1M views</span><span>2.1M views</span><span>1.5M+ views</span><span>7.8M+ on 16 videos</span><span>Staff skits beat food shots</span><span>Open for freelance work</span><span>Wichita, KS</span>
+    <span>2.1M views</span><span>2.1M views</span><span>1.5M+ views</span><span>7.8M+ on 16 videos</span><span>Staff skits beat food shots</span><span>Open for freelance work</span><span>Wichita, KS</span>
+  </div>
+</div>
 
 <main id="top">
   <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow">Social media and small tools for local businesses</p>
-      <h1 style="margin-top:16px">I get local businesses <span class="mark">seen</span>, then build tools that save them time.</h1>
-      <p class="lede">For the past year I ran social media for a Wichita restaurant. Our short videos starring the staff, regulars and owner pulled millions of views. I also build simple AI tools and websites with Claude, JavaScript and Python.</p>
-      <div class="cta">
-        <a class="btn primary" href="#contact">Talk about your business</a>
-        <a class="btn ghost" href="#work">See what I've built</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="proof" aria-label="Results">
-    <div class="wrap">
-      <div class="stats">
-        <div class="stat"><b>7.8M+</b><span>views on my 16 top restaurant videos</span></div>
-        <div class="stat"><b>2.1M</b><span>views on the best single video</span></div>
-        <div class="stat"><b>3</b><span>videos that passed 1.5M views</span></div>
-        <div class="stat"><b>1 yr</b><span>running TikTok, Instagram and Facebook for one restaurant</span></div>
-      </div>
-      <p class="note">These are public view counts on the restaurant's own posts. The winners were short skits with the people who work there. None of them were about the food.</p>
-    </div>
-  </section>
-
-  <section class="block" id="services">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Services</p>
-        <h2>What I can do for your business</h2>
-      </div>
-      <div class="services">
-        <div class="svc lead">
-          <p class="eyebrow">Main offer</p>
-          <h3>Social media for restaurants and local shops</h3>
-          <p>I turn your staff into the content. Every business already has people worth putting on camera. I plan the ideas, film and edit short videos, and post them on TikTok, Instagram and Facebook.</p>
-          <ul>
-            <li>Short skits and behind-the-counter videos built around your team</li>
-            <li>A steady posting schedule, so you don't have to think about it</li>
-            <li>A simple monthly report on what worked and what's next</li>
-          </ul>
+    <div class="wrap grid">
+      <div>
+        <h1><span class="sm">Local businesses,</span><span class="over" data-t="get seen.">get seen.</span><br><span class="blue">save time.</span></h1>
+        <p class="lede">For a year I ran social media for a Wichita restaurant. Our short videos starring the staff, regulars and owner pulled <b>7.8M+ views</b>. I also build small AI tools and websites that take busywork off an owner's plate.</p>
+        <div class="cta">
+          <a class="btn pink" href="#contact">Talk about your business</a>
+          <a class="btn" href="#work">See what I've built</a>
         </div>
-        <div class="svc">
-          <p class="eyebrow">AI helpers</p>
-          <h3>Tools that write in your voice</h3>
+      </div>
+      <div class="reels" aria-label="Top videos by public view count">
+        <div class="reel r1"><span class="tag">Staff skit</span><div class="views">2.1M</div><p class="cap">Starring the people who work there</p></div>
+        <div class="reel r2"><span class="tag">Staff skit</span><div class="views">2.1M</div><p class="cap">No food in the shot</p></div>
+        <div class="reel r3"><span class="tag">Regulars</span><div class="views">1.5M+</div><p class="cap">Three videos passed 1.5M</p></div>
+        <div class="sticker"><div>7.8M+<small>views on my<br>top 16 videos</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="menu" style="padding-top:24px">
+    <div class="wrap">
+      <div class="sec-head"><h2>The menu</h2><p class="label">Services for local businesses · Prices on request</p></div>
+      <div class="board">
+        <div class="title"><h3>Today's offer</h3><p class="label">Serving Wichita and nearby</p></div>
+        <div class="item special">
+          <div><span class="chef">House special</span><h4>Social media for restaurants and shops</h4></div>
+          <span class="price">Monthly</span>
+          <p>I turn your staff into the content. I plan the ideas, film and edit short videos built around your team, and post them on TikTok, Instagram and Facebook on a steady schedule. Each month you get a short report on what worked and what's next.</p>
+        </div>
+        <div class="item">
+          <h4>AI helper in your voice</h4><span class="price">Per project</span>
           <p>A small tool that drafts replies, emails, posts or quotes the way you would write them, so you edit instead of starting from a blank page.</p>
         </div>
-        <div class="svc">
-          <p class="eyebrow">Automations</p>
-          <h3>Less copy and paste</h3>
+        <div class="item">
+          <h4>Busywork automation</h4><span class="price">Per project</span>
           <p>Connect your forms, spreadsheets and email so orders, leads and bookings land where they belong without retyping.</p>
         </div>
-        <div class="svc">
-          <p class="eyebrow">Websites</p>
-          <h3>A fast one-page site</h3>
-          <p>Hours, menu, location and a way to reach you, on a page that loads fast on a phone. This site is an example.</p>
+        <div class="item">
+          <h4>One-page website</h4><span class="price">Per project</span>
+          <p>Hours, menu, location and a way to reach you, on a page that loads fast on a phone.</p>
         </div>
-        <div class="svc">
-          <p class="eyebrow">Start small</p>
-          <h3>Free social media check</h3>
-          <p>Send me your accounts and I'll tell you three things I would change first. No cost and no commitment.</p>
+        <div class="item">
+          <h4>Social media check</h4><span class="price free">Free</span>
+          <p>Send me your accounts and I'll tell you the three things I would change first. No commitment.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="block" id="work" style="padding-top:16px">
+  <section class="sec" id="work">
     <div class="wrap">
-      <div class="head">
-        <p class="eyebrow">Work</p>
-        <h2>Things I've built</h2>
-        <p>Most of these came from problems I hit in my own sales and job-search work. Each one runs with Claude, or with a free model on your own computer so your data stays private.</p>
-      </div>
-
-      <article class="proj">
-        <p class="kind">Job search</p>
-        <div class="body">
+      <div class="sec-head"><h2>Things I've built</h2><p class="label">Claude or a free local model · Your data stays yours</p></div>
+      <div class="pins">
+        <article class="card">
+          <span class="kind k-job">Job search</span>
           <h3>Rolevisor</h3>
-          <p>Reads your resume and a job posting, then rewrites the resume for that job. You get a match score, the skills you have and are missing, and a list of what changed and why. A role finder suggests jobs that fit your background.</p>
-          <div class="tags"><span>Next.js</span><span>TypeScript</span><span>Claude API</span><span>Ollama / LM Studio</span></div>
-          <div class="links"><a class="live" href="https://rolevisor.vercel.app">Try it live</a><a href="https://github.com/czinabu/rolevisor">Code</a></div>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="kind">Sales</p>
-        <div class="body">
+          <p>Reads your resume and a job posting, then rewrites the resume for that job. You get a match score, the skills you have and are missing, and a list of what changed and why.</p>
+          <p class="stack">Next.js · TypeScript · Claude API · Ollama / LM Studio</p>
+          <div class="acts"><a class="play" href="https://rolevisor.vercel.app">Try it live</a><a href="https://github.com/czinabu/rolevisor">Code</a></div>
+        </article>
+        <article class="card">
+          <span class="kind k-sales">Sales</span>
           <h3>Inroad</h3>
-          <p>Drafts first-touch outreach for one prospect: a LinkedIn note, a cold email, and a phone opener with a voicemail, tuned to the prospect's industry. It tracks each contact's follow-ups and shows who is due today.</p>
-          <div class="tags"><span>JavaScript</span><span>Node.js</span><span>Claude API</span><span>Ollama / LM Studio</span></div>
-          <div class="links"><a href="https://github.com/czinabu/inroad-outreach">Code</a></div>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="kind">Sales</p>
-        <div class="body">
+          <p>Drafts first-touch outreach for one prospect: a LinkedIn note, a cold email and a phone opener, tuned to their industry. It tracks every follow-up and shows who's due today.</p>
+          <p class="stack">JavaScript · Node.js · Claude API · Ollama / LM Studio</p>
+          <div class="acts"><a href="https://github.com/czinabu/inroad-outreach">Code</a></div>
+        </article>
+        <article class="card">
+          <span class="kind k-sales">Sales</span>
           <h3>Objection handler</h3>
-          <p>A one-screen helper for live sales calls. Type a word from what the prospect said, like "price" or "busy", and the matching rebuttal and close appear. It logs which lines win and works offline.</p>
-          <div class="tags"><span>JavaScript</span><span>HTML</span><span>Works offline</span></div>
-          <div class="links"><a href="https://github.com/czinabu/sdr-objection-handler">Code</a></div>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="kind">Local AI</p>
-        <div class="body">
-          <h3>Code documentation generator</h3>
-          <p>Writes Markdown documentation for Python code using a model running on your own machine, so the code never leaves it.</p>
-          <div class="tags"><span>Python</span><span>FastAPI</span><span>Ollama</span></div>
-          <div class="links"><a href="https://github.com/czinabu/code-documentation-generator">Code</a></div>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="kind">Local AI</p>
-        <div class="body">
-          <h3>Local refactor dashboard</h3>
-          <p>A self-hosted app that suggests cleaner, faster versions of your code, also powered by a local model.</p>
-          <div class="tags"><span>Python</span><span>Ollama</span><span>Self-hosted</span></div>
-          <div class="links"><a href="https://github.com/czinabu/local-refactor-dashboard">Code</a></div>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="kind">Game</p>
-        <div class="body">
+          <p>A one-screen helper for live sales calls. Type a word the prospect said, like "price" or "busy", and the rebuttal and close appear. It logs which lines win and works offline.</p>
+          <p class="stack">JavaScript · HTML · Works offline</p>
+          <div class="acts"><a href="https://github.com/czinabu/sdr-objection-handler">Code</a></div>
+        </article>
+        <article class="card">
+          <span class="kind k-ai">Local AI</span>
+          <h3>Doc generator + refactor dashboard</h3>
+          <p>Two self-hosted tools that write documentation for Python code and suggest cleaner versions of it, using a model on your own machine so the code never leaves it.</p>
+          <p class="stack">Python · FastAPI · Ollama</p>
+          <div class="acts"><a href="https://github.com/czinabu/code-documentation-generator">Doc generator code</a><a href="https://github.com/czinabu/local-refactor-dashboard">Refactor code</a></div>
+        </article>
+        <article class="card">
+          <span class="kind k-game">Game</span>
           <h3>Power Trip</h3>
-          <p>A third-person action game that runs in the browser, with online co-op and a Windows desktop app. There are no asset files: the models, sound and music are all generated in code.</p>
-          <div class="tags"><span>Three.js</span><span>JavaScript</span><span>Electron</span></div>
-          <div class="links"><a class="live" href="https://sw-power-trip.vercel.app">Play in your browser</a><a href="https://github.com/czinabu/power-trip">Code</a></div>
-        </div>
-      </article>
-
-      <article class="proj">
-        <p class="kind">Game</p>
-        <div class="body">
+          <p>A third-person action game in the browser, with online co-op and a Windows desktop app. No asset files: the models, sound and music are all generated in code.</p>
+          <p class="stack">Three.js · JavaScript · Electron</p>
+          <div class="acts"><a class="play" href="https://sw-power-trip.vercel.app">Play</a><a href="https://github.com/czinabu/power-trip">Code</a></div>
+        </article>
+        <article class="card">
+          <span class="kind k-game">Game</span>
           <h3>Neon Trench</h3>
-          <p>A cyberpunk trench-run flight game with a five-mission campaign, three unlockable ships and an upgrade workshop. Procedural levels and synthesized audio, all in plain JavaScript.</p>
-          <div class="tags"><span>Three.js</span><span>JavaScript</span><span>No build step</span></div>
-          <div class="links"><a href="https://github.com/czinabu/neon-trench">Code</a></div>
-        </div>
-      </article>
+          <p>A cyberpunk trench-run flight game with a five-mission campaign, three unlockable ships and an upgrade workshop. Procedural levels and synthesized audio.</p>
+          <p class="stack">Three.js · JavaScript · No build step</p>
+          <div class="acts"><a href="https://github.com/czinabu/neon-trench">Code</a></div>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section class="block" id="about" style="padding-top:16px">
-    <div class="wrap about">
-      <div>
-        <p class="eyebrow">About</p>
-        <h2 style="margin-top:10px;margin-bottom:20px">Sales and support background, builder by habit</h2>
-        <p>I've spent the last few years talking to customers all day: as a sales development rep at Sunrun, a senior contact center banker at Fidelity Bank, and a direct service associate at a 24-hour shelter. I know what a busy owner needs to hear and how to keep things simple.</p>
-        <p>I studied computer science and engineering at the University of Kansas and Wichita State, and I run my own home lab for AI tools. When something at work is repetitive, I build a tool for it.</p>
-      </div>
-      <div class="col">
-        <p class="eyebrow">Tools I use</p>
-        <div class="kit">
-          <span>Claude</span><span>Claude Code</span><span>Ollama</span><span>Qwen</span><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>FastAPI</span><span>Three.js</span><span>Docker</span><span>Linux</span><span>Tailscale</span><span>Salesforce</span><span>HubSpot</span><span>TikTok</span><span>Instagram</span><span>Facebook</span>
+  <section class="sec" id="about" style="padding-top:24px">
+    <div class="wrap">
+      <div class="sec-head"><h2>About me</h2><p class="label">Sales and support by day · Builder by habit</p></div>
+      <div class="about">
+        <div class="txt">
+          <p>I've spent the last few years talking to customers all day, so I know what a busy owner needs to hear and how to keep things simple.</p>
+          <p>I studied computer science and engineering at the University of Kansas and Wichita State, and I run my own home lab for AI tools. When something at work is repetitive, I build a tool for it.</p>
         </div>
+        <div>
+          <ul class="jobs">
+            <li><b>Sunrun</b><span>Sales development rep</span></li>
+            <li><b>Wichita restaurant</b><span>Social media, 1 year</span></li>
+            <li><b>Fidelity Bank</b><span>Senior contact center banker</span></li>
+            <li><b>KU Robotics</b><span>PR executive</span></li>
+          </ul>
+          <p class="kit"><b>Tools:</b> Claude · Claude Code · Ollama · Qwen · JavaScript · TypeScript · Python · FastAPI · Three.js · Docker · Linux · Tailscale · Salesforce · HubSpot · TikTok · Instagram · Facebook</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flyer-sec" id="contact">
+    <div class="wrap">
+      <div class="flyer">
+        <p class="label">Wanted: local businesses</p>
+        <h2 style="margin-top:12px">Own a business in Wichita? Let's talk.</h2>
+        <p>Tell me what you sell and what eats up your week. I'll reply with an idea or two, free.</p>
+        <div class="row">
+          <button class="btn" type="button" data-copy>czinabu@gmail.com</button>
+          <a class="btn" href="https://www.linkedin.com/in/calebzinabu/">LinkedIn</a>
+          <span id="copied" aria-live="polite"></span>
+        </div>
+      </div>
+      <div class="tabs" aria-label="Tear-off tabs: tap one to copy my email">
+        <button class="tab" type="button" data-copy><span><b>Caleb</b>czinabu@gmail.com</span></button>
+        <button class="tab" type="button" data-copy><span><b>Caleb</b>czinabu@gmail.com</span></button>
+        <button class="tab" type="button" data-copy><span><b>Caleb</b>czinabu@gmail.com</span></button>
+        <button class="tab" type="button" data-copy><span><b>Caleb</b>czinabu@gmail.com</span></button>
+        <button class="tab" type="button" data-copy><span><b>Caleb</b>czinabu@gmail.com</span></button>
+        <button class="tab" type="button" data-copy><span><b>Caleb</b>czinabu@gmail.com</span></button>
+        <button class="tab" type="button" data-copy><span><b>Caleb</b>czinabu@gmail.com</span></button>
+        <button class="tab" type="button" data-copy><span><b>Caleb</b>czinabu@gmail.com</span></button>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="contact" id="contact">
-  <div class="wrap">
-    <p class="eyebrow" style="color:var(--sun)">Contact</p>
-    <h2 style="margin-top:12px">Own a business in Wichita? Let's talk.</h2>
-    <p>Tell me what you sell and what eats up your week. I'll reply within a day with an idea or two, free.</p>
-    <div class="row">
-      <span class="email" id="email">czinabu@gmail.com</span>
-      <button class="btn primary" id="copy" type="button">Copy email</button>
-      <a class="btn ghost" href="https://www.linkedin.com/in/calebzinabu/">LinkedIn</a>
-      <span id="copied" aria-live="polite"></span>
-    </div>
-    <p class="meta">Code on <a href="https://github.com/czinabu">GitHub</a> · Based in Wichita, KS · Open to freelance work</p>
-  </div>
+<footer class="base">
+  <div class="wrap"><span>Caleb Zinabu · Wichita, KS · Open to freelance work</span><a href="https://github.com/czinabu">github.com/czinabu</a></div>
 </footer>
 
 <script>
 (function(){
-  var b=document.getElementById('copy'),o=document.getElementById('copied'),e=document.getElementById('email');
-  b.addEventListener('click',function(){
-    var t=e.textContent.trim();
-    function sel(){var r=document.createRange();r.selectNodeContents(e);var s=getSelection();s.removeAllRanges();s.addRange(r);o.textContent='Selected. Press Ctrl+C to copy.';}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){o.textContent='Copied';},sel);}else{sel();}
+  var out=document.getElementById('copied'),email='czinabu@gmail.com';
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click',function(){
+      function done(){out.textContent='Email copied';}
+      function fail(){out.textContent='Email: '+email;}
+      if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(email).then(done,fail);}else{fail();}
+      if(b.classList.contains('tab')){b.style.visibility='hidden';}
+    });
   });
 })();
 </script>
