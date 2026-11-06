@@ -84,6 +84,22 @@ p{margin:0}
   .play{transition:filter .15s}.play:hover{filter:brightness(1.12)}
 }
 
+
+/* tabs: one game at a time */
+.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-bottom:40px}
+.tab{display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:16px;align-items:center;padding:12px;background:transparent;border:1px solid var(--rule);border-radius:2px;color:var(--text);text-align:left;cursor:pointer;font:inherit;text-decoration:none}
+.tab img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border-radius:2px;opacity:.7}
+.tab b{display:block;font:400 1.05rem/1.2 var(--title);text-transform:uppercase;letter-spacing:.02em}
+.tab span{display:block;margin-top:6px}
+.tab[aria-selected="true"]{border-color:var(--accent);background:var(--ground-2);box-shadow:inset 0 -3px 0 var(--accent)}
+.tab[aria-selected="true"] img{opacity:1}
+.tab.nt{--accent:var(--nt)}.tab.pt{--accent:var(--pt)}
+.tab:hover{border-color:var(--soft)}
+.sub-h{font:400 .74rem/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+.key .over .right{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.game[hidden]{display:none}
+@media (max-width:560px){.tab{grid-template-columns:minmax(0,1fr)}.tab img{display:none}.key .over .meta{display:none}.key h2{font-size:1.7rem}.key img{aspect-ratio:1/1}}
+
 /* closing */
 .close{border-top:1px solid var(--rule);padding-block:56px 72px}
 .close .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
@@ -122,14 +138,22 @@ p{margin:0}
     </div>
   </section>
 
-  <article class="game nt" id="neon-trench" aria-labelledby="nt-h">
+  <div class="wrap">
+    <div class="tabs" role="tablist" aria-label="Games">
+      <a class="tab nt" role="tab" id="tab-neon-trench" href="#neon-trench" aria-controls="neon-trench" aria-selected="true"><img src="img/nt-planet.jpg" alt=""><div><b>Neon Trench</b><span class="meta">Flight combat · 22 ops</span></div></a>
+      <a class="tab pt" role="tab" id="tab-power-trip" href="#power-trip" aria-controls="power-trip" aria-selected="false"><img src="img/pt-archive.jpg" alt=""><div><b>Power Trip</b><span class="meta">Action · Online co-op</span></div></a>
+    </div>
+  </div>
+
+  <article class="game nt" id="neon-trench" role="tabpanel" aria-labelledby="tab-neon-trench">
     <div class="wrap">
       <figure class="key">
         <img src="img/nt-planet.jpg" alt="The cockpit view in deep space, with a ringed planet, an asteroid field and the ship's instrument panels">
-        <figcaption class="over"><h2 id="nt-h">Neon Trench</h2><span class="meta"><span class="idx">01</span> · Flight combat</span></figcaption>
+        <figcaption class="over"><h2 id="nt-h">Neon Trench</h2><div class="right"><span class="meta">Flight combat · Free in your browser</span><a class="play" href="https://neon-trench.vercel.app/"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Play now</a></div></figcaption>
       </figure>
       <div class="sheet">
         <div class="pitch">
+          <p class="sub-h">About the game</p>
           <p class="lead">A cyberpunk flight game. You fly for the carrier Halcyon against the Helios-Kiru syndicate, from trench strikes and dogfights to fleet battles you command from the bridge.</p>
           <ul class="feats">
             <li>A 22-operation story campaign with briefings and bonus objectives</li>
@@ -139,6 +163,7 @@ p{margin:0}
           </ul>
         </div>
         <div>
+          <p class="sub-h">Specs</p>
           <dl class="specs">
             <div><dt>Genre</dt><dd>Flight combat</dd></div>
             <div><dt>Campaign</dt><dd>22 operations</dd></div>
@@ -147,13 +172,13 @@ p{margin:0}
             <div><dt>Built with</dt><dd>JavaScript, Three.js</dd></div>
           </dl>
           <div class="actions">
-            <a class="play" href="https://neon-trench.vercel.app/"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Play Neon Trench</a>
             <a class="alt" href="https://github.com/czinabu/neon-trench">Source code</a>
           </div>
           <p class="note">Best in Chrome or Edge on a desktop.</p>
         </div>
       </div>
-      <div class="stills">
+      <p class="sub-h" style="margin-top:48px;margin-bottom:0">Screenshots</p>
+      <div class="stills" style="margin-top:14px">
         <figure><img src="img/nt-trench.jpg" alt="A fighter diving down a glowing trench" loading="lazy"><figcaption>Trench run</figcaption></figure>
         <figure><img src="img/nt-strike.jpg" alt="A mission intro over a city of dark towers" loading="lazy"><figcaption>Mission intro over the Kiru core</figcaption></figure>
         <figure><img src="img/nt-title.jpg" alt="The title screen with a planet, two ships and the campaign menu" loading="lazy"><figcaption>Title screen</figcaption></figure>
@@ -161,14 +186,15 @@ p{margin:0}
     </div>
   </article>
 
-  <article class="game pt" id="power-trip" aria-labelledby="pt-h">
+  <article class="game pt" id="power-trip" role="tabpanel" aria-labelledby="tab-power-trip">
     <div class="wrap">
       <figure class="key">
         <img src="img/pt-archive.jpg" alt="Third-person view of the hero holding a glowing blade in a golden archive hall, with enemies ahead" loading="lazy">
-        <figcaption class="over"><h2 id="pt-h">Power Trip</h2><span class="meta"><span class="idx">02</span> · Action · Co-op</span></figcaption>
+        <figcaption class="over"><h2 id="pt-h">Power Trip</h2><div class="right"><span class="meta">Action · Co-op · Free in your browser</span><a class="play" href="https://sw-power-trip.vercel.app"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Play now</a></div></figcaption>
       </figure>
       <div class="sheet">
         <div class="pitch">
+          <p class="sub-h">About the game</p>
           <p class="lead">A third-person action game with two heroes: a blade duelist with fighting stances and powers, and an armored gunner with a jetpack. Play the story alone or with a friend.</p>
           <ul class="feats">
             <li>A story campaign with chapters, cutscenes and a squad that takes your orders</li>
@@ -178,6 +204,7 @@ p{margin:0}
           </ul>
         </div>
         <div>
+          <p class="sub-h">Specs</p>
           <dl class="specs">
             <div><dt>Genre</dt><dd>Third-person action</dd></div>
             <div><dt>Heroes</dt><dd>2</dd></div>
@@ -186,14 +213,14 @@ p{margin:0}
             <div><dt>Built with</dt><dd>JavaScript, Three.js</dd></div>
           </dl>
           <div class="actions">
-            <a class="play" href="https://sw-power-trip.vercel.app"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Play Power Trip</a>
             <a class="alt" href="https://github.com/czinabu/power-trip/releases">Windows app</a>
             <a class="alt" href="https://github.com/czinabu/power-trip">Source code</a>
           </div>
           <p class="note">Best in Chrome or Edge on a desktop.</p>
         </div>
       </div>
-      <div class="stills">
+      <p class="sub-h" style="margin-top:48px;margin-bottom:0">Screenshots</p>
+      <div class="stills" style="margin-top:14px">
         <figure><img src="img/pt-outpost.jpg" alt="A desert town at dusk" loading="lazy"><figcaption>Desert outpost</figcaption></figure>
         <figure><img src="img/pt-jedha.jpg" alt="A purple-lit plaza in a city at night" loading="lazy"><figcaption>Night city</figcaption></figure>
         <figure><img src="img/pt-kamino.jpg" alt="Platforms in a storm-lashed ocean city" loading="lazy"><figcaption>Storm platforms</figcaption></figure>
@@ -208,5 +235,19 @@ p{margin:0}
     <div class="links"><a class="play" style="--accent:#e9ecf2" href="index.html">See what I offer</a><a class="alt" href="work.html">Other work</a></div>
   </div>
 </footer>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab')),panels=tabs.map(function(t){return document.getElementById(t.getAttribute('aria-controls'));});
+  function show(id,focus){var hit=false;tabs.forEach(function(t,i){var on=t.getAttribute('aria-controls')===id;if(on)hit=true;t.setAttribute('aria-selected',on?'true':'false');t.tabIndex=on?0:-1;panels[i].hidden=!on;});
+    if(!hit)show('neon-trench');}
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(e){e.preventDefault();var id=t.getAttribute('aria-controls');show(id);try{history.replaceState(null,'','#'+id);}catch(_){location.hash=id;}});
+    t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];n.focus();n.click();}});
+  });
+  show((location.hash||'').slice(1)||'neon-trench');
+  addEventListener('hashchange',function(){show(location.hash.slice(1));});
+})();
+</script>
 </body>
 </html>
