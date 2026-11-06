@@ -5,294 +5,208 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Caleb Zinabu · The Hangar</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Power Trip and Neon Trench, two browser games Caleb Zinabu builds with Three.js. Both are playable online.">
+<meta name="description" content="Neon Trench and Power Trip, two browser games Caleb Zinabu builds with Three.js. Both are playable online.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* Games page: a ship's mission-control console. Fixed starfield behind everything; each section is a HUD panel
-   with corner brackets and a mono status line. Cyan = system/HUD, magenta = action, amber = data highlights.
-   Deliberately single dark theme, every color set explicitly. */
+/* Games page as a game press kit. The screenshots carry the color; the page stays quiet around them.
+   One wide "credits" face for titles only, hairline rules instead of boxes, one accent per game taken from its own art.
+   Deliberately single dark theme with every color set explicitly. */
 :root{
-  --void:#05070f; --panel:rgba(10,16,34,.78); --panel-solid:#0a1022; --line:rgba(120,230,255,.28);
-  --text:#e6f1ff; --soft:rgba(230,241,255,.72); --hud:#6ff0ff; --mag:#ff3fb4; --amber:#ffc24a; --ok:#41ff95;
-  --display:"Chakra Petch", "Arial Narrow", system-ui, sans-serif;
+  --ground:#0b0d12; --ground-2:#12151d; --rule:#262b38; --text:#e9ecf2; --soft:#a3aab8; --faint:#6b7282;
+  --nt:#5fd3dd; --pt:#e2a94a;
+  --title:"Michroma", "Arial Black", system-ui, sans-serif;
   --body:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{background:var(--void)}
-body{margin:0;background:var(--void);color:var(--text);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(ellipse at 85% -10%,rgba(60,80,200,.35),transparent 55%),radial-gradient(ellipse at -10% 110%,rgba(255,63,180,.18),transparent 50%)}
-body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.07;
-  background:repeating-linear-gradient(0deg,#fff 0 1px,transparent 1px 3px)}
-.page{position:relative;z-index:1}
+html{background:var(--ground)}
+body{margin:0;background:var(--ground);color:var(--text);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
 a{color:inherit}
-a:focus-visible,button:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
-.wrap{max-width:70rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{margin:0;font-family:var(--display);text-transform:uppercase;letter-spacing:.03em;line-height:1;text-wrap:balance}
+a:focus-visible{outline:2px solid var(--text);outline-offset:4px}
+.wrap{max-width:76rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
 p{margin:0}
-.lbl{font:600 .72rem/1.3 var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--hud)}
-.mono{font-family:var(--mono)}
+.meta{font:400 .74rem/1.5 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
 
-/* top bar */
-.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(5,7,15,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.bar .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:12px;flex-wrap:wrap}
-.callsign{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 1rem/1 var(--display);letter-spacing:.12em;text-transform:uppercase}
-.callsign i{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
-.bar nav{display:flex;gap:22px;flex-wrap:wrap}
-.bar nav a{font:600 .78rem/1 var(--display);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--soft)}
-.bar nav a:hover{color:var(--hud)}
+/* nav */
+.top{border-bottom:1px solid var(--rule)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px;flex-wrap:wrap}
+.top a{text-decoration:none}
+.name{font:500 .95rem/1 var(--body)}
+.top nav{display:flex;gap:24px;font:400 .78rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--soft)}
+.top nav a:hover,.top nav a[aria-current="page"]{color:var(--text)}
+.top nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px}
 
-/* panel chrome */
-.panel{position:relative;background:var(--panel);border:1px solid var(--line);backdrop-filter:blur(3px)}
-.panel::before,.panel::after{content:"";position:absolute;width:16px;height:16px;border:solid var(--hud);pointer-events:none}
-.panel::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
-.panel::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+/* intro */
+.intro{padding-block:88px 72px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,26rem);gap:48px;align-items:end}
+.intro h1{font:400 clamp(2.6rem,7.5vw,5.6rem)/1.02 var(--title);letter-spacing:.02em;text-transform:uppercase}
+.intro p{color:var(--soft)}
+.intro .meta{margin-top:20px}
 
-/* hero */
-.hero{padding-block:72px 56px}
-.hero .grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:48px;align-items:center}
-.hero h1{font-size:clamp(2.9rem,7.4vw,5.6rem);font-weight:700;margin-top:18px}
-.hero h1 em{font-style:normal;color:var(--hud);text-shadow:0 0 28px rgba(111,240,255,.45)}
-.hero h1 .glitch{color:var(--mag);text-shadow:0 0 28px rgba(255,63,180,.45)}
-.hero .lede{margin-top:24px;max-width:50ch;font-size:1.15rem;color:var(--soft)}
-.hero .lede b{color:var(--amber);font-weight:600}
-.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
-.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;font:700 .9rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:1px solid var(--hud);color:var(--hud);background:rgba(111,240,255,.06);cursor:pointer}
-.btn.go{background:var(--mag);border-color:var(--mag);color:#0a0410;box-shadow:0 0 24px rgba(255,63,180,.45)}
-@media (prefers-reduced-motion:no-preference){.btn{transition:box-shadow .2s,background .2s}.btn:hover{box-shadow:0 0 28px rgba(111,240,255,.5)}.btn.go:hover{box-shadow:0 0 36px rgba(255,63,180,.7)}}
+/* one game */
+.game{padding-block:0 112px;--accent:var(--text)}
+.game.nt{--accent:var(--nt)}
+.game.pt{--accent:var(--pt)}
+.key{position:relative;margin:0;border-radius:2px;overflow:hidden;background:var(--ground-2)}
+.key img{display:block;width:100%;aspect-ratio:21/9;object-fit:cover}
+.key::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(11,13,18,.92) 100%)}
+.key .over{position:absolute;left:clamp(16px,3vw,40px);right:clamp(16px,3vw,40px);bottom:clamp(16px,3vw,36px);z-index:1;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
+.key h2{font:400 clamp(2rem,5.6vw,4.4rem)/1 var(--title);letter-spacing:.02em;text-transform:uppercase}
+.key .meta{color:rgba(233,236,242,.75)}
+.key .idx{color:var(--accent)}
 
-/* telemetry panel: bars drawn to one scale, 0 to 2.5M */
-.telemetry{padding:22px 22px 18px}
-.telemetry .head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px}
-.telemetry .total{margin-top:18px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
-.telemetry .total b{font:700 clamp(3rem,6vw,4.2rem)/1 var(--display);color:var(--amber);text-shadow:0 0 22px rgba(255,194,74,.35);font-variant-numeric:tabular-nums}
-.telemetry .total span{color:var(--soft);font-size:.95rem;max-width:18ch;line-height:1.35}
-.bars{list-style:none;margin:20px 0 0;padding:0;display:flex;flex-direction:column;gap:12px}
-.bars li{display:grid;grid-template-columns:5.5rem minmax(0,1fr) 3.6rem;gap:12px;align-items:center;font:500 .8rem/1 var(--mono);color:var(--soft)}
-.bars .track{height:12px;background:rgba(111,240,255,.08);border:1px solid var(--line);position:relative;overflow:hidden}
-.bars .fill{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--hud),#b9fbff);box-shadow:0 0 12px rgba(111,240,255,.6)}
-.bars .val{text-align:right;color:var(--text);font-variant-numeric:tabular-nums}
-.axis{display:grid;grid-template-columns:5.5rem minmax(0,1fr) 3.6rem;gap:12px;margin-top:8px;font:400 .66rem/1 var(--mono);color:rgba(230,241,255,.45)}
-.axis div{display:flex;justify-content:space-between}
-.telemetry .foot{margin-top:16px;font-size:.85rem;color:var(--soft);border-top:1px solid var(--line);padding-top:12px}
-@media (prefers-reduced-motion:no-preference){.bars .fill{animation:grow 1.4s cubic-bezier(.2,.8,.2,1) both}@keyframes grow{from{transform:scaleX(.02);transform-origin:left}to{transform:scaleX(1);transform-origin:left}}}
+.sheet{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:56px;padding-top:40px}
+.pitch p.lead{font-size:1.25rem;line-height:1.55;max-width:44ch}
+.feats{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--rule)}
+.feats li{padding-block:12px;border-bottom:1px solid var(--rule);color:var(--soft);display:grid;grid-template-columns:1.2rem minmax(0,1fr);gap:8px}
+.feats li::before{content:"";width:6px;height:6px;margin-top:.62em;background:var(--accent)}
 
-/* sections */
-.sec{padding-block:72px}
-.sec-head{display:flex;flex-direction:column;gap:12px;margin-bottom:36px;max-width:62ch}
-.sec-head h2{font-size:clamp(2.2rem,5.4vw,3.6rem);font-weight:700}
-.sec-head p{color:var(--soft)}
+.specs{margin:0;border-top:1px solid var(--rule)}
+.specs div{display:flex;justify-content:space-between;gap:16px;padding-block:12px;border-bottom:1px solid var(--rule)}
+.specs dt{font:400 .74rem/1.6 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.specs dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}
+.actions{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:28px}
+.play{display:inline-flex;align-items:center;gap:12px;padding:15px 24px;background:var(--accent);color:#0b0d12;text-decoration:none;font:600 1rem/1 var(--body);border-radius:2px}
+.play svg{width:12px;height:12px}
+.alt{font:400 .8rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:5px}
+.alt:hover{color:var(--text);border-color:var(--text)}
+.note{margin-top:16px;font-size:.9rem;color:var(--faint)}
 
-/* modules (services) */
-.modules{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.mod{padding:26px;display:flex;flex-direction:column;gap:12px;min-width:0}
-.mod.prime{grid-column:1/-1;border-color:rgba(255,63,180,.5);background:linear-gradient(135deg,rgba(255,63,180,.12),rgba(10,16,34,.82) 55%)}
-.mod.prime::before{border-color:var(--mag)}.mod.prime::after{border-color:var(--mag)}
-.mod .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.mod .code{font:500 .72rem/1 var(--mono);color:rgba(230,241,255,.5)}
-.mod h3{font-size:clamp(1.4rem,2.6vw,1.9rem)}
-.mod.prime h3{font-size:clamp(1.8rem,3.6vw,2.6rem)}
-.mod p{color:var(--soft);max-width:70ch}
-.mod ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;color:var(--soft)}
-.mod li::before{content:"› ";color:var(--mag);font-weight:700}
-.chip{font:600 .68rem/1 var(--display);letter-spacing:.16em;text-transform:uppercase;padding:6px 9px;border:1px solid var(--line);color:var(--hud)}
-.chip.mag{border-color:var(--mag);color:var(--mag)}
-.chip.free{background:var(--amber);border-color:var(--amber);color:#1a1100}
+.stills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:48px}
+.stills figure{margin:0;min-width:0}
+.stills img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px;background:var(--ground-2)}
+.stills figcaption{margin-top:10px;font-size:.88rem;color:var(--faint)}
 
-/* fleet (projects) */
-.fleet{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.ship{padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
-.ship .row{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
-.status{font:600 .66rem/1.2 var(--display);letter-spacing:.14em;text-transform:uppercase;color:rgba(230,241,255,.55);display:inline-flex;align-items:center;gap:7px}
-.status::before{content:"";width:7px;height:7px;border-radius:50%;background:rgba(230,241,255,.35)}
-.status.on{color:var(--ok)}.status.on::before{background:var(--ok);box-shadow:0 0 8px var(--ok)}
-.ship h3{font-size:1.6rem}
-.ship p{color:var(--soft);font-size:.98rem}
-.ship .stack{font:400 .76rem/1.6 var(--mono);color:rgba(230,241,255,.55)}
-.acts{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:auto;padding-top:4px}
-.acts a{font:600 .78rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--hud);border-bottom:1px solid var(--line);padding-bottom:4px}
-.acts a.launch{color:#04121a;background:var(--hud);border:0;padding:10px 14px;box-shadow:0 0 16px rgba(111,240,255,.45)}
-.acts a.launch.mag{background:var(--mag);color:#0a0410;box-shadow:0 0 16px rgba(255,63,180,.5)}
-.acts a:hover{color:#fff}.acts a.launch:hover{background:#fff;color:#04121a}
-.group-lbl{grid-column:1/-1;display:flex;align-items:center;gap:14px;margin-top:12px}
-.group-lbl::after{content:"";flex:1;height:1px;background:var(--line)}
-.spec{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0;background:var(--line);border:1px solid var(--line)}
-.spec div{background:var(--panel-solid);padding:9px 10px;min-width:0}
-.spec dt{font:600 .6rem/1.2 var(--display);letter-spacing:.16em;text-transform:uppercase;color:var(--hud)}
-.spec dd{margin:4px 0 0;font:500 .85rem/1.2 var(--mono);color:var(--text)}
-.ship.game{grid-column:span 1}
-.fleet .wide{grid-column:span 2}
-
-/* pilot file (about) */
-.pilot{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px}
-.pilot .bio{padding:28px}
-.pilot .bio p{font-size:1.1rem;max-width:58ch}
-.pilot .bio p+p{margin-top:14px;color:var(--soft)}
-.log{padding:22px}
-.log ol{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column}
-.log li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding-block:11px;border-top:1px solid var(--line)}
-.log b{font:600 1.05rem/1.2 var(--display);text-transform:uppercase;letter-spacing:.06em}
-.log span{font:400 .76rem/1.6 var(--mono);color:var(--soft);text-align:right}
-.kit{margin-top:16px;font:400 .78rem/1.9 var(--mono);color:var(--soft)}
-
-/* contact terminal */
-.terminal{padding:clamp(24px,4vw,44px);border-color:rgba(255,63,180,.5)}
-.terminal::before,.terminal::after{border-color:var(--mag)}
-.terminal .prompt{font:500 .9rem/1.7 var(--mono);color:var(--ok)}
-.terminal .prompt .cur{display:inline-block;width:.6em;height:1.05em;background:var(--ok);vertical-align:-2px;margin-left:4px}
-@media (prefers-reduced-motion:no-preference){.terminal .prompt .cur{animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}}
-.terminal h2{font-size:clamp(2.4rem,6.4vw,4.4rem);margin-top:18px}
-.terminal h2 span{color:var(--mag);text-shadow:0 0 26px rgba(255,63,180,.45)}
-.terminal p.sub{margin-top:16px;color:var(--soft);font-size:1.1rem;max-width:52ch}
-.terminal .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:28px}
-.addr{font:500 1.05rem/1 var(--mono);padding:14px 18px;border:1px dashed var(--line);color:var(--text);user-select:all}
-#copied{font:500 .85rem var(--mono);color:var(--ok)}
-footer{padding-block:32px 48px;font:400 .78rem/1.6 var(--mono);color:rgba(230,241,255,.5)}
-footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-@media (max-width:760px){
-  .hero .grid,.pilot{grid-template-columns:minmax(0,1fr)}
-  .modules,.fleet{grid-template-columns:minmax(0,1fr)}
-  .bar nav{display:none}
-  .hero{padding-block:44px 40px}
+@media (prefers-reduced-motion:no-preference){
+  .play{transition:filter .15s}.play:hover{filter:brightness(1.12)}
 }
 
-.bar nav a[aria-current="page"]{color:var(--hud)}
-.ghero{padding-block:64px 24px}
-.ghero h1{font-size:clamp(3.4rem,10vw,7rem);font-weight:700;margin-top:14px;text-shadow:0 0 30px rgba(111,240,255,.35)}
-.ghero p.sub{margin-top:18px;max-width:60ch;font-size:1.15rem;color:var(--soft)}
-.game{padding-block:48px}
-.gcard{padding:clamp(20px,3vw,36px);display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:32px;align-items:start}
-.gcard.mag{border-color:rgba(255,63,180,.5)}.gcard.mag::before,.gcard.mag::after{border-color:var(--mag)}
-.gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;min-width:0}
-.gallery figure{margin:0;min-width:0}
-.gallery figure:first-child{grid-column:1/-1}
-.gallery img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--line)}
-.gallery figcaption{font:400 .72rem/1.4 var(--mono);color:rgba(230,241,255,.55);margin-top:6px}
-.ginfo{display:flex;flex-direction:column;gap:16px;min-width:0}
-.ginfo .row{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
-.ginfo h2{font-size:clamp(2.4rem,5vw,3.6rem)}
-.ginfo p{color:var(--soft)}
-.feat{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;color:var(--soft)}
-.feat li{padding-left:1.2em;position:relative}
-.feat li::before{content:"›";position:absolute;left:0;color:var(--mag);font-weight:700}
-.ginfo .acts{margin-top:4px}
-.ginfo .acts a.launch{padding:14px 20px;font-size:.9rem}
-.how{font:400 .78rem/1.6 var(--mono);color:rgba(230,241,255,.55)}
-@media (max-width:860px){.gcard{grid-template-columns:minmax(0,1fr)}}
+/* closing */
+.close{border-top:1px solid var(--rule);padding-block:56px 72px}
+.close .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.close p{font-size:1.25rem;max-width:40ch}
+.close p span{color:var(--soft)}
+.close .links{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+
+@media (max-width:860px){
+  .intro{grid-template-columns:minmax(0,1fr);gap:24px;padding-block:56px 48px}
+  .sheet{grid-template-columns:minmax(0,1fr);gap:36px}
+  .key img{aspect-ratio:16/10}
+  .game{padding-bottom:80px}
+}
+@media (max-width:560px){
+  .stills{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .stills figure:last-child{display:none}
+  .top nav{gap:16px}
+  .key img{aspect-ratio:4/3}
+}
 </style>
 </head>
 <body>
-<canvas id="sky" aria-hidden="true"></canvas>
-<div class="page">
-<header class="bar">
+<header class="top">
   <div class="wrap">
-    <a class="callsign" href="index.html"><i></i>Caleb Zinabu</a>
+    <a class="name" href="index.html">Caleb Zinabu</a>
     <nav aria-label="Pages"><a href="index.html">Home</a><a href="work.html">Work</a><a href="games.html" aria-current="page">Games</a><a href="index.html#contact">Contact</a></nav>
   </div>
 </header>
 
-<main id="top">
-  <section class="ghero">
-    <div class="wrap">
-      <p class="lbl">// Off-hours log · Sector Wichita</p>
-      <h1>The hangar</h1>
-      <p class="sub">Sci-fi is my favorite thing, so after work I build games in the browser with Three.js. There are no asset files in either one: every ship, character, sound and song is generated in code. Both run on a desktop browser, nothing to install.</p>
+<main>
+  <section class="wrap intro">
+    <h1>The Hangar</h1>
+    <div>
+      <p>Sci-fi is my favorite genre, so after work I build games for the browser. Neither game uses asset files: every ship, character, sound and song is generated in code with Three.js.</p>
+      <p class="meta">2 games · Free to play · Desktop browser, nothing to install</p>
     </div>
   </section>
 
-  <section class="game" id="neon-trench">
+  <article class="game nt" id="neon-trench" aria-labelledby="nt-h">
     <div class="wrap">
-      <article class="panel gcard">
-        <div class="gallery">
-          <figure><img src="img/nt-trench.jpg" alt="Flying a fighter down a glowing trench with the cockpit HUD showing speed and boost"><figcaption>Trench run, with the HUD showing speed, missiles and boost</figcaption></figure>
-          <figure><img src="img/nt-title.jpg" alt="Neon Trench title screen with a planet and two ships" loading="lazy"><figcaption>Title screen</figcaption></figure>
-          <figure><img src="img/nt-cockpit.jpg" alt="Inside the cockpit during a launch from the carrier bay" loading="lazy"><figcaption>Carrier launch</figcaption></figure>
-          <figure><img src="img/nt-strike.jpg" alt="Mission intro over a city of towers" loading="lazy"><figcaption>Mission intro</figcaption></figure>
-        </div>
-        <div class="ginfo">
-          <div class="row"><span class="chip mag">Flight combat</span><span class="status on">Online · Playable</span></div>
-          <h2>Neon Trench</h2>
-          <p>A cyberpunk flight game. You fly for the carrier Halcyon against the Helios-Kiru syndicate: trench strikes, dogfights, capital ship kills and fleet battles you command from the bridge.</p>
-          <ul class="feat">
+      <figure class="key">
+        <img src="img/nt-planet.jpg" alt="The cockpit view in deep space, with a ringed planet, an asteroid field and the ship's instrument panels">
+        <figcaption class="over"><h2 id="nt-h">Neon Trench</h2><span class="meta"><span class="idx">01</span> · Flight combat</span></figcaption>
+      </figure>
+      <div class="sheet">
+        <div class="pitch">
+          <p class="lead">A cyberpunk flight game. You fly for the carrier Halcyon against the Helios-Kiru syndicate, from trench strikes and dogfights to fleet battles you command from the bridge.</p>
+          <ul class="feats">
             <li>A 22-operation story campaign with briefings and bonus objectives</li>
-            <li>Fleet battles: launch wings and focus fire from the carrier's command bridge</li>
-            <li>Four ships to unlock and an upgrade workshop paid for with mission credits</li>
-            <li>Flight school, a skirmish builder and free play modes</li>
+            <li>Fleet battles where you launch wings and focus fire from the carrier's bridge</li>
+            <li>Four ships to unlock, plus an upgrade workshop paid for with mission credits</li>
+            <li>Flight school, a skirmish builder and free play</li>
           </ul>
-          <dl class="spec"><div><dt>Ops</dt><dd>22</dd></div><div><dt>Ships</dt><dd>4</dd></div><div><dt>Engine</dt><dd>Three.js</dd></div></dl>
-          <div class="acts"><a class="launch mag" href="https://neon-trench.vercel.app/">Launch game</a><a href="https://github.com/czinabu/neon-trench">Source</a></div>
-          <p class="how">Mouse to steer, click to fire. Works best in Chrome or Edge on a desktop.</p>
         </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="game" id="power-trip" style="padding-top:8px">
-    <div class="wrap">
-      <article class="panel gcard">
-        <div class="gallery">
-          <figure><img src="img/pt-archive.jpg" alt="Third-person view of the hero with a glowing blade in a golden archive hall, enemies ahead" loading="lazy"><figcaption>The archive</figcaption></figure>
-          <figure><img src="img/pt-outpost.jpg" alt="A desert town at dusk" loading="lazy"><figcaption>Desert outpost</figcaption></figure>
-          <figure><img src="img/pt-jedha.jpg" alt="A purple-lit night city plaza" loading="lazy"><figcaption>Night city</figcaption></figure>
-          <figure><img src="img/pt-kamino.jpg" alt="A storm-lashed platform city" loading="lazy"><figcaption>Storm platforms</figcaption></figure>
+        <div>
+          <dl class="specs">
+            <div><dt>Genre</dt><dd>Flight combat</dd></div>
+            <div><dt>Campaign</dt><dd>22 operations</dd></div>
+            <div><dt>Ships</dt><dd>4</dd></div>
+            <div><dt>Controls</dt><dd>Mouse and keyboard</dd></div>
+            <div><dt>Built with</dt><dd>JavaScript, Three.js</dd></div>
+          </dl>
+          <div class="actions">
+            <a class="play" href="https://neon-trench.vercel.app/"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Play Neon Trench</a>
+            <a class="alt" href="https://github.com/czinabu/neon-trench">Source code</a>
+          </div>
+          <p class="note">Best in Chrome or Edge on a desktop.</p>
         </div>
-        <div class="ginfo">
-          <div class="row"><span class="chip">Action · Co-op</span><span class="status on">Online · Playable</span></div>
-          <h2>Power Trip</h2>
-          <p>A third-person action game with two heroes to play: a blade duelist with fighting stances and powers, and an armored gunner with a jetpack. Fight through a story campaign alone or with a friend.</p>
-          <ul class="feat">
-            <li>A story campaign with chapters, cutscenes and a squad that follows your orders</li>
-            <li>Online co-op with a room code, between the website and the desktop app</li>
-            <li>Survival waves, a sandbox and training grounds across 20+ maps</li>
-            <li>An adaptive orchestral score with a theme for each hero</li>
-            <li>A Windows app that updates itself</li>
-          </ul>
-          <dl class="spec"><div><dt>Heroes</dt><dd>2</dd></div><div><dt>Mode</dt><dd>Co-op</dd></div><div><dt>Ships to</dt><dd>Web + PC</dd></div></dl>
-          <div class="acts"><a class="launch" href="https://sw-power-trip.vercel.app">Launch game</a><a href="https://github.com/czinabu/power-trip">Source</a><a href="https://github.com/czinabu/power-trip/releases">Windows app</a></div>
-          <p class="how">Keyboard and mouse. Works best in Chrome or Edge on a desktop.</p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section class="sec" style="padding-top:24px">
-    <div class="wrap">
-      <div class="panel terminal">
-        <p class="prompt">&gt; back to base<span class="cur"></span></p>
-        <h2>By day I help <span>local businesses.</span></h2>
-        <p class="sub">Short videos that get you seen, and small tools that save you time.</p>
-        <div class="row"><a class="btn go" href="index.html">See what I offer</a><a class="btn" href="work.html">See my other work</a></div>
+      </div>
+      <div class="stills">
+        <figure><img src="img/nt-trench.jpg" alt="A fighter diving down a glowing trench" loading="lazy"><figcaption>Trench run</figcaption></figure>
+        <figure><img src="img/nt-strike.jpg" alt="A mission intro over a city of dark towers" loading="lazy"><figcaption>Mission intro over the Kiru core</figcaption></figure>
+        <figure><img src="img/nt-title.jpg" alt="The title screen with a planet, two ships and the campaign menu" loading="lazy"><figcaption>Title screen</figcaption></figure>
       </div>
     </div>
-  </section>
+  </article>
+
+  <article class="game pt" id="power-trip" aria-labelledby="pt-h">
+    <div class="wrap">
+      <figure class="key">
+        <img src="img/pt-archive.jpg" alt="Third-person view of the hero holding a glowing blade in a golden archive hall, with enemies ahead" loading="lazy">
+        <figcaption class="over"><h2 id="pt-h">Power Trip</h2><span class="meta"><span class="idx">02</span> · Action · Co-op</span></figcaption>
+      </figure>
+      <div class="sheet">
+        <div class="pitch">
+          <p class="lead">A third-person action game with two heroes: a blade duelist with fighting stances and powers, and an armored gunner with a jetpack. Play the story alone or with a friend.</p>
+          <ul class="feats">
+            <li>A story campaign with chapters, cutscenes and a squad that takes your orders</li>
+            <li>Online co-op with a room code, across the website and the desktop app</li>
+            <li>Survival waves, a sandbox and training grounds across more than 20 maps</li>
+            <li>An adaptive orchestral score with a theme for each hero</li>
+          </ul>
+        </div>
+        <div>
+          <dl class="specs">
+            <div><dt>Genre</dt><dd>Third-person action</dd></div>
+            <div><dt>Heroes</dt><dd>2</dd></div>
+            <div><dt>Multiplayer</dt><dd>Online co-op</dd></div>
+            <div><dt>Platforms</dt><dd>Browser, Windows</dd></div>
+            <div><dt>Built with</dt><dd>JavaScript, Three.js</dd></div>
+          </dl>
+          <div class="actions">
+            <a class="play" href="https://sw-power-trip.vercel.app"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Play Power Trip</a>
+            <a class="alt" href="https://github.com/czinabu/power-trip/releases">Windows app</a>
+            <a class="alt" href="https://github.com/czinabu/power-trip">Source code</a>
+          </div>
+          <p class="note">Best in Chrome or Edge on a desktop.</p>
+        </div>
+      </div>
+      <div class="stills">
+        <figure><img src="img/pt-outpost.jpg" alt="A desert town at dusk" loading="lazy"><figcaption>Desert outpost</figcaption></figure>
+        <figure><img src="img/pt-jedha.jpg" alt="A purple-lit plaza in a city at night" loading="lazy"><figcaption>Night city</figcaption></figure>
+        <figure><img src="img/pt-kamino.jpg" alt="Platforms in a storm-lashed ocean city" loading="lazy"><figcaption>Storm platforms</figcaption></figure>
+      </div>
+    </div>
+  </article>
 </main>
 
-<footer><div class="wrap"><span>Caleb Zinabu · Wichita, KS · Open to freelance work</span><a href="https://github.com/czinabu">github.com/czinabu</a></div></footer>
-</div>
-
-<script>
-(function(){
-  var c=document.getElementById('sky');if(!c.getContext)return;
-  var x=c.getContext('2d'),st=[],w,h,d=Math.min(window.devicePixelRatio||1,2),sy=0;
-  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function size(){w=innerWidth;h=innerHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);st=[];
-    var n=Math.round(w*h/2200);for(var i=0;i<n;i++)st.push({x:Math.random()*w,y:Math.random()*h,z:Math.random()*.9+.1,t:Math.random()*6.28});}
-  function draw(){x.clearRect(0,0,w,h);var off=sy;
-    for(var i=0;i<st.length;i++){var s=st[i];
-      if(!still){s.x-=s.z*.18;s.t+=.02;if(s.x<0){s.x=w;s.y=Math.random()*h;}}
-      var y=((s.y-off*s.z*.25)%h+h)%h;
-      x.globalAlpha=(.25+s.z*.7)*(still?1:.75+.25*Math.sin(s.t));x.fillStyle=s.z>.85?'#bdf7ff':'#e6f1ff';x.fillRect(s.x,y,s.z*1.7,s.z*1.7);}
-    if(!still)requestAnimationFrame(draw);}
-  addEventListener('scroll',function(){sy=scrollY;if(still)draw();},{passive:true});
-  addEventListener('resize',function(){size();if(still)draw();});
-  size();draw();
-})();
-</script>
+<footer class="close">
+  <div class="wrap">
+    <p>By day I help local businesses get seen. <span>Short videos, small AI tools and simple websites.</span></p>
+    <div class="links"><a class="play" style="--accent:#e9ecf2" href="index.html">See what I offer</a><a class="alt" href="work.html">Other work</a></div>
+  </div>
+</footer>
 </body>
 </html>
