@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Caleb Zinabu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Caleb Zinabu, Wichita, KS. Short-form video for local restaurants and small AI tools and websites for small businesses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column, a big-number proof strip, then work in plain rows. Sunflower yellow marks only the claims worth proving. */
+:root{
+  --bg:#f6f7f9; --surface:#ffffff; --ink:#141a26; --muted:#5a6475; --line:#dde1e8;
+  --sun:#ffc929; --sun-ink:#5a4100; --link:#1d4fd7;
+  --display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f131b; --surface:#171c27; --ink:#eef1f6; --muted:#9aa4b5; --line:#2a3140;
+  --sun:#ffcf3f; --sun-ink:#ffd65c; --link:#8fb0ff; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f131b; --surface:#171c27; --ink:#eef1f6; --muted:#9aa4b5; --line:#2a3140;
+  --sun:#ffcf3f; --sun-ink:#ffd65c; --link:#8fb0ff; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 1.0625rem/1.6 var(--body);margin:0;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible,button:focus-visible{outline:3px solid var(--sun);outline-offset:2px;border-radius:4px}
+.wrap{max-width:62rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.08}
+h2{font-size:clamp(1.6rem,3.4vw,2.2rem);font-weight:800;letter-spacing:-.01em}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:0}
+.eyebrow{font:500 .75rem/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.mark{background:linear-gradient(transparent 58%,var(--sun) 58%);color:inherit;padding:0 .08em}
+
+header.top{padding-block:20px}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font:700 1.1rem/1 var(--display);color:var(--ink);text-decoration:none}
+.brand small{font:400 .8rem var(--body);color:var(--muted);margin-left:8px}
+nav{display:flex;gap:20px;flex-wrap:wrap;font-size:.95rem}
+nav a{color:var(--ink);text-decoration:none}
+nav a:hover{text-decoration:underline}
+
+.hero{padding-block:56px 40px}
+.hero h1{font-size:clamp(2.3rem,6.2vw,4.2rem);font-weight:800;letter-spacing:-.025em;max-width:16ch}
+.hero .lede{margin-top:24px;max-width:58ch;font-size:1.15rem;color:var(--muted)}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font:600 1rem var(--body);text-decoration:none;border:2px solid var(--ink);cursor:pointer}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn.ghost{background:transparent;color:var(--ink)}
+
+.proof{border-block:1px solid var(--line);padding-block:32px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.stat b{display:block;font:800 clamp(2rem,4.6vw,3rem)/1 var(--display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:8px;font-size:.92rem;color:var(--muted);max-width:22ch}
+.proof .note{margin-top:20px;font-size:.92rem;color:var(--muted);max-width:70ch}
+
+section.block{padding-block:64px}
+.head{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;max-width:60ch}
+.head p{color:var(--muted)}
+
+.services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.svc{background:var(--surface);padding:28px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.svc .eyebrow{color:var(--sun-ink)}
+.svc p{color:var(--muted)}
+.svc.lead{grid-column:1/-1}
+.svc.lead h3{font-size:1.6rem}
+.svc ul{margin:4px 0 0;padding-left:1.1em;color:var(--muted)}
+.svc li+li{margin-top:4px}
+
+.proj{display:grid;grid-template-columns:11rem minmax(0,1fr);gap:8px 32px;padding-block:28px;border-top:1px solid var(--line)}
+.proj:last-child{border-bottom:1px solid var(--line)}
+.proj .kind{font:500 .75rem/1.5 var(--mono);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);padding-top:6px}
+.proj .body{display:flex;flex-direction:column;gap:10px;min-width:0}
+.proj .body p{color:var(--muted);max-width:64ch}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tags span{font:400 .78rem/1 var(--mono);padding:6px 8px;border:1px solid var(--line);border-radius:6px;color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;gap:18px;font-weight:600;font-size:.95rem}
+.live{display:inline-flex;align-items:center;gap:6px}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:#1fa35b}
+
+.about{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:48px}
+.about p+p{margin-top:16px}
+.about .col p{color:var(--muted)}
+.kit{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.kit span{font:500 .85rem/1 var(--body);padding:8px 12px;background:var(--surface);border:1px solid var(--line);border-radius:999px}
+
+.contact{background:var(--ink);color:var(--bg);padding-block:64px;margin-top:32px}
+.contact h2{color:var(--bg);font-size:clamp(2rem,5vw,3.2rem);max-width:18ch}
+.contact p{color:var(--bg);opacity:.8;margin-top:16px;max-width:56ch}
+.contact .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:28px}
+.email{font:500 1.05rem var(--mono);background:transparent;color:var(--bg);border:2px solid var(--bg);border-radius:999px;padding:12px 20px;user-select:all}
+.contact .btn.primary{background:var(--sun);border-color:var(--sun);color:#141a26}
+.contact .btn.ghost{border-color:var(--bg);color:var(--bg)}
+.contact .meta{margin-top:28px;font-size:.92rem;opacity:.7}
+.contact .meta a{color:var(--bg)}
+#copied{font-size:.9rem;color:var(--sun)}
+
+@media (max-width:760px){
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .services{grid-template-columns:minmax(0,1fr)}
+  .proj{grid-template-columns:minmax(0,1fr)}
+  .proj .kind{padding-top:0}
+  .about{grid-template-columns:minmax(0,1fr);gap:32px}
+  nav{display:none}
+}
+@media (prefers-reduced-motion:no-preference){.btn{transition:transform .15s}.btn:hover{transform:translateY(-1px)}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top">Caleb Zinabu<small>Wichita, KS</small></a>
+    <nav aria-label="Sections">
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Social media and small tools for local businesses</p>
+      <h1 style="margin-top:16px">I get local businesses <span class="mark">seen</span>, then build tools that save them time.</h1>
+      <p class="lede">For the past year I ran social media for a Wichita restaurant. Our short videos starring the staff, regulars and owner pulled millions of views. I also build simple AI tools and websites with Claude, JavaScript and Python.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Talk about your business</a>
+        <a class="btn ghost" href="#work">See what I've built</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof" aria-label="Results">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><b>7.8M+</b><span>views on my 16 top restaurant videos</span></div>
+        <div class="stat"><b>2.1M</b><span>views on the best single video</span></div>
+        <div class="stat"><b>3</b><span>videos that passed 1.5M views</span></div>
+        <div class="stat"><b>1 yr</b><span>running TikTok, Instagram and Facebook for one restaurant</span></div>
+      </div>
+      <p class="note">These are public view counts on the restaurant's own posts. The winners were short skits with the people who work there. None of them were about the food.</p>
+    </div>
+  </section>
+
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Services</p>
+        <h2>What I can do for your business</h2>
+      </div>
+      <div class="services">
+        <div class="svc lead">
+          <p class="eyebrow">Main offer</p>
+          <h3>Social media for restaurants and local shops</h3>
+          <p>I turn your staff into the content. Every business already has people worth putting on camera. I plan the ideas, film and edit short videos, and post them on TikTok, Instagram and Facebook.</p>
+          <ul>
+            <li>Short skits and behind-the-counter videos built around your team</li>
+            <li>A steady posting schedule, so you don't have to think about it</li>
+            <li>A simple monthly report on what worked and what's next</li>
+          </ul>
+        </div>
+        <div class="svc">
+          <p class="eyebrow">AI helpers</p>
+          <h3>Tools that write in your voice</h3>
+          <p>A small tool that drafts replies, emails, posts or quotes the way you would write them, so you edit instead of starting from a blank page.</p>
+        </div>
+        <div class="svc">
+          <p class="eyebrow">Automations</p>
+          <h3>Less copy and paste</h3>
+          <p>Connect your forms, spreadsheets and email so orders, leads and bookings land where they belong without retyping.</p>
+        </div>
+        <div class="svc">
+          <p class="eyebrow">Websites</p>
+          <h3>A fast one-page site</h3>
+          <p>Hours, menu, location and a way to reach you, on a page that loads fast on a phone. This site is an example.</p>
+        </div>
+        <div class="svc">
+          <p class="eyebrow">Start small</p>
+          <h3>Free social media check</h3>
+          <p>Send me your accounts and I'll tell you three things I would change first. No cost and no commitment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work" style="padding-top:16px">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Work</p>
+        <h2>Things I've built</h2>
+        <p>Most of these came from problems I hit in my own sales and job-search work. Each one runs with Claude, or with a free model on your own computer so your data stays private.</p>
+      </div>
+
+      <article class="proj">
+        <p class="kind">Job search</p>
+        <div class="body">
+          <h3>Rolevisor</h3>
+          <p>Reads your resume and a job posting, then rewrites the resume for that job. You get a match score, the skills you have and are missing, and a list of what changed and why. A role finder suggests jobs that fit your background.</p>
+          <div class="tags"><span>Next.js</span><span>TypeScript</span><span>Claude API</span><span>Ollama / LM Studio</span></div>
+          <div class="links"><a class="live" href="https://rolevisor.vercel.app">Try it live</a><a href="https://github.com/czinabu/rolevisor">Code</a></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="kind">Sales</p>
+        <div class="body">
+          <h3>Inroad</h3>
+          <p>Drafts first-touch outreach for one prospect: a LinkedIn note, a cold email, and a phone opener with a voicemail, tuned to the prospect's industry. It tracks each contact's follow-ups and shows who is due today.</p>
+          <div class="tags"><span>JavaScript</span><span>Node.js</span><span>Claude API</span><span>Ollama / LM Studio</span></div>
+          <div class="links"><a href="https://github.com/czinabu/inroad-outreach">Code</a></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="kind">Sales</p>
+        <div class="body">
+          <h3>Objection handler</h3>
+          <p>A one-screen helper for live sales calls. Type a word from what the prospect said, like "price" or "busy", and the matching rebuttal and close appear. It logs which lines win and works offline.</p>
+          <div class="tags"><span>JavaScript</span><span>HTML</span><span>Works offline</span></div>
+          <div class="links"><a href="https://github.com/czinabu/sdr-objection-handler">Code</a></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="kind">Local AI</p>
+        <div class="body">
+          <h3>Code documentation generator</h3>
+          <p>Writes Markdown documentation for Python code using a model running on your own machine, so the code never leaves it.</p>
+          <div class="tags"><span>Python</span><span>FastAPI</span><span>Ollama</span></div>
+          <div class="links"><a href="https://github.com/czinabu/code-documentation-generator">Code</a></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="kind">Local AI</p>
+        <div class="body">
+          <h3>Local refactor dashboard</h3>
+          <p>A self-hosted app that suggests cleaner, faster versions of your code, also powered by a local model.</p>
+          <div class="tags"><span>Python</span><span>Ollama</span><span>Self-hosted</span></div>
+          <div class="links"><a href="https://github.com/czinabu/local-refactor-dashboard">Code</a></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="kind">Game</p>
+        <div class="body">
+          <h3>Power Trip</h3>
+          <p>A third-person action game that runs in the browser, with online co-op and a Windows desktop app. There are no asset files: the models, sound and music are all generated in code.</p>
+          <div class="tags"><span>Three.js</span><span>JavaScript</span><span>Electron</span></div>
+          <div class="links"><a class="live" href="https://sw-power-trip.vercel.app">Play in your browser</a><a href="https://github.com/czinabu/power-trip">Code</a></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <p class="kind">Game</p>
+        <div class="body">
+          <h3>Neon Trench</h3>
+          <p>A cyberpunk trench-run flight game with a five-mission campaign, three unlockable ships and an upgrade workshop. Procedural levels and synthesized audio, all in plain JavaScript.</p>
+          <div class="tags"><span>Three.js</span><span>JavaScript</span><span>No build step</span></div>
+          <div class="links"><a href="https://github.com/czinabu/neon-trench">Code</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="block" id="about" style="padding-top:16px">
+    <div class="wrap about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2 style="margin-top:10px;margin-bottom:20px">Sales and support background, builder by habit</h2>
+        <p>I've spent the last few years talking to customers all day: as a sales development rep at Sunrun, a senior contact center banker at Fidelity Bank, and a direct service associate at a 24-hour shelter. I know what a busy owner needs to hear and how to keep things simple.</p>
+        <p>I studied computer science and engineering at the University of Kansas and Wichita State, and I run my own home lab for AI tools. When something at work is repetitive, I build a tool for it.</p>
+      </div>
+      <div class="col">
+        <p class="eyebrow">Tools I use</p>
+        <div class="kit">
+          <span>Claude</span><span>Claude Code</span><span>Ollama</span><span>Qwen</span><span>JavaScript</span><span>TypeScript</span><span>Python</span><span>FastAPI</span><span>Three.js</span><span>Docker</span><span>Linux</span><span>Tailscale</span><span>Salesforce</span><span>HubSpot</span><span>TikTok</span><span>Instagram</span><span>Facebook</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <p class="eyebrow" style="color:var(--sun)">Contact</p>
+    <h2 style="margin-top:12px">Own a business in Wichita? Let's talk.</h2>
+    <p>Tell me what you sell and what eats up your week. I'll reply within a day with an idea or two, free.</p>
+    <div class="row">
+      <span class="email" id="email">czinabu@gmail.com</span>
+      <button class="btn primary" id="copy" type="button">Copy email</button>
+      <a class="btn ghost" href="https://www.linkedin.com/in/calebzinabu/">LinkedIn</a>
+      <span id="copied" aria-live="polite"></span>
+    </div>
+    <p class="meta">Code on <a href="https://github.com/czinabu">GitHub</a> · Based in Wichita, KS · Open to freelance work</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('copy'),o=document.getElementById('copied'),e=document.getElementById('email');
+  b.addEventListener('click',function(){
+    var t=e.textContent.trim();
+    function sel(){var r=document.createRange();r.selectNodeContents(e);var s=getSelection();s.removeAllRanges();s.addRange(r);o.textContent='Selected. Press Ctrl+C to copy.';}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){o.textContent='Copied';},sel);}else{sel();}
+  });
+})();
+</script>
+</body>
+</html>
