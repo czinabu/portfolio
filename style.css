@@ -212,3 +212,19 @@ footer.base .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:
 .mini-cta{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;background:var(--a1);border:2.5px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:28px}
 .mini-cta h2{font-size:clamp(2rem,5vw,3rem);font-weight:900}
 @media (max-width:860px){.doors{grid-template-columns:minmax(0,1fr)}}
+
+/* career section on the Work page */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border:2.5px solid var(--ink);background:var(--paper-2);box-shadow:6px 6px 0 var(--ink)}
+.kpis div{padding:22px;border-right:2px dashed var(--ink);min-width:0}
+.kpis div:last-child{border-right:0}
+.kpis b{display:block;font:900 clamp(2.6rem,5vw,3.6rem)/.9 var(--display);font-variant-numeric:tabular-nums}
+.kpis span{display:block;margin-top:10px;font-size:.92rem;color:var(--ink-soft)}
+.timeline{list-style:none;margin:40px 0 0;padding:0;border-top:2.5px solid var(--ink)}
+.timeline li{display:grid;grid-template-columns:11rem minmax(0,1fr);gap:8px 28px;padding-block:20px;border-bottom:1px solid color-mix(in srgb,var(--ink) 25%,transparent)}
+.timeline .when{font:600 .8rem/1.6 var(--mono);color:var(--ink-soft);padding-top:4px}
+.timeline h3{font-size:clamp(1.4rem,2.6vw,1.8rem);font-weight:800}
+.timeline li p:not(.when){color:var(--ink-soft);margin-top:6px;max-width:66ch}
+.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:36px}
+.skills .label{color:var(--a2);margin-bottom:8px}
+.skills p:not(.label){color:var(--ink-soft);font-size:.98rem}
+@media (max-width:860px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpis div:nth-child(2){border-right:0}.kpis div:nth-child(-n+2){border-bottom:2px dashed var(--ink)}.timeline li{grid-template-columns:minmax(0,1fr)}.skills{grid-template-columns:minmax(0,1fr)}}
