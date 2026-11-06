@@ -1,6 +1,6 @@
 # Caleb Zinabu — portfolio
 
-One-page portfolio site: social media results for local businesses, services, and the tools and games I've built.
+Portfolio site, live at https://calebzinabu.vercel.app/ — Home (services for local businesses), Work (tools and background) and Games.
 
 It's a single static `index.html` with no build step. Open it in a browser to view it locally.
 
