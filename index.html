@@ -8,207 +8,14 @@
 <meta name="description" content="Caleb Zinabu, Wichita, KS. Short-form video for local restaurants, plus small AI tools and websites for small businesses.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Chakra+Petch:wght@600;700&display=swap">
-<style>
-/* Layout: a riso-printed community-board flyer. Newsprint paper, green-black ink, sunflower gold, prairie green and brick red overprints.
-   Hero = poster headline + a fan of 9:16 video cards. Services = a restaurant menu board. Contact = tear-off flyer tabs.
-   Deliberately single-theme: the paper look stays the same in light and dark, with every color set explicitly. */
-:root{
-  --paper:#ecebe3; --paper-2:#f7f6f0; --ink:#16261c; --ink-soft:#3f4c42;
-  --a1:#ffb81c; --a2:#1f7a4d; --a3:#e8472b; --on-a2:#ffffff; --reel:#111111;
-  --display:"Big Shoulders Display", Impact, "Arial Narrow", sans-serif;
-  --body:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
-  color-scheme:light;
-}
-
-*{box-sizing:border-box}
-html{background:var(--paper)}
-body{margin:0;background:var(--paper);color:var(--ink);font:400 1.0625rem/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.22;mix-blend-mode:multiply;
-  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
-a{color:inherit}
-a:focus-visible,button:focus-visible{outline:3px solid var(--a2);outline-offset:3px}
-.wrap{max-width:68rem;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-h1,h2,h3{margin:0;font-family:var(--display);text-transform:uppercase;line-height:.9;text-wrap:balance}
-p{margin:0}
-.label{font:600 .75rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.14em}
-/* overprint: a pink copy of the text sits offset behind black ink */
-.over{position:relative;display:inline-block}
-.over::before{content:attr(data-t);position:absolute;left:.05em;top:.05em;white-space:nowrap;color:var(--a1);z-index:-1;mix-blend-mode:multiply}
-
-/* top strip + ticker */
-.strip{background:var(--ink);color:var(--paper-2)}
-.strip .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:10px;flex-wrap:wrap}
-.strip a{text-decoration:none}
-.strip nav{display:flex;gap:18px;flex-wrap:wrap}
-.strip nav a:hover{color:var(--a3)}
-.ticker{background:var(--a3);border-block:2px solid var(--ink);overflow:hidden;white-space:nowrap}
-.ticker .track{display:inline-flex;gap:40px;padding-block:8px;font:600 .82rem/1 var(--mono);text-transform:uppercase;letter-spacing:.1em}
-.ticker .track span::before{content:"▶ ";color:var(--a1)}
-@media (prefers-reduced-motion:no-preference){.ticker .track{animation:tick 38s linear infinite}@keyframes tick{to{transform:translateX(-50%)}}}
-
-/* hero */
-.hero{padding-block:48px 72px;position:relative;isolation:isolate}
-.hero .grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:40px;align-items:center}
-.hero h1{font-size:clamp(4.2rem,12vw,9.5rem);font-weight:900;letter-spacing:-.005em}
-.hero h1 .sm{display:block;font-size:.42em;font-weight:800;letter-spacing:.01em;margin-bottom:.12em}
-.hero h1 .blue{color:var(--a2)}
-.hero .lede{margin-top:24px;max-width:44ch;font-size:1.15rem;color:var(--ink-soft)}
-.hero .lede b{color:var(--ink);background:var(--a3);padding:0 .2em}
-.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.btn{display:inline-flex;align-items:center;padding:13px 22px;font:700 1rem var(--body);text-decoration:none;border:2.5px solid var(--ink);background:var(--paper-2);color:var(--ink);box-shadow:5px 5px 0 var(--ink);cursor:pointer}
-.btn.pink{background:var(--a1);color:var(--ink)}
-@media (prefers-reduced-motion:no-preference){.btn{transition:transform .12s,box-shadow .12s}.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink)}.btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}}
-
-/* fan of 9:16 video cards */
-.reels{position:relative;height:clamp(340px,42vw,460px);max-width:100%}
-.reel{position:absolute;width:clamp(150px,19vw,210px);aspect-ratio:9/16;border:3px solid var(--ink);border-radius:18px;background:var(--reel);color:#fff;overflow:hidden;box-shadow:8px 8px 0 rgba(17,17,17,.9);display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
-.reel::before{content:"";position:absolute;inset:0;z-index:0}
-.reel>*{position:relative;z-index:1}
-.reel .views{font:900 clamp(2.2rem,4vw,3rem)/.9 var(--display);display:flex;align-items:center;gap:6px}
-.reel .views::before{content:"";width:0;height:0;border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent}
-.reel .cap{font:500 .78rem/1.35 var(--body);margin-top:8px;opacity:.92}
-.reel .tag{position:absolute;top:12px;left:12px;font:600 .66rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--ink);padding:5px 7px;border-radius:4px}
-.r1{left:0;top:40px;transform:rotate(-7deg)}
-.r1::before{background:radial-gradient(circle at 30% 25%,var(--a1),transparent 60%),linear-gradient(160deg,color-mix(in srgb,var(--a1) 22%,#111),#111)}
-.r2{left:30%;top:0;transform:rotate(2deg);z-index:2}
-.r2::before{background:radial-gradient(circle at 70% 30%,var(--a2),transparent 60%),linear-gradient(200deg,color-mix(in srgb,var(--a2) 22%,#111),#111)}
-.r3{left:60%;top:56px;transform:rotate(9deg)}
-.r3::before{background:radial-gradient(circle at 40% 30%,var(--a3),transparent 55%),linear-gradient(170deg,color-mix(in srgb,var(--a3) 22%,#111),#111)}
-.sticker{position:absolute;right:-6px;bottom:-14px;z-index:5;width:132px;height:132px;border-radius:50%;background:var(--a3);border:3px solid var(--ink);display:grid;place-items:center;text-align:center;transform:rotate(-12deg);font:900 1.9rem/.85 var(--display);text-transform:uppercase;box-shadow:4px 4px 0 var(--ink)}
-.sticker small{display:block;font:600 .62rem/1.2 var(--mono);letter-spacing:.06em;margin-top:6px}
-
-/* section heads */
-.sec{padding-block:72px}
-.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:36px;border-bottom:4px solid var(--ink);padding-bottom:14px}
-.sec-head h2{font-size:clamp(2.8rem,7vw,5rem);font-weight:900}
-.sec-head .label{color:var(--ink-soft)}
-
-/* menu board */
-.board{background:var(--ink);color:var(--paper-2);border-radius:6px;padding:clamp(24px,4vw,48px);box-shadow:10px 10px 0 var(--a2);position:relative}
-.board .title{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:2px dashed color-mix(in srgb,var(--paper-2) 35%,transparent);padding-bottom:16px;margin-bottom:8px}
-.board .title h3{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--a3)}
-.board .title .label{color:color-mix(in srgb,var(--paper-2) 65%,transparent)}
-.item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;padding-block:20px;border-bottom:1px solid color-mix(in srgb,var(--paper-2) 15%,transparent)}
-.item:last-child{border-bottom:0}
-.item h4{margin:0;font:800 clamp(1.35rem,2.6vw,1.7rem)/1.05 var(--display);text-transform:uppercase;letter-spacing:.02em;display:flex;align-items:baseline;gap:10px;min-width:0}
-.item h4::after{content:"";flex:1;border-bottom:3px dotted color-mix(in srgb,var(--paper-2) 40%,transparent);transform:translateY(-4px);min-width:24px}
-.item .price{font:600 .85rem/1.6 var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--a3);align-self:baseline}
-.item .price.free{color:var(--ink);background:var(--a1);padding:2px 8px}
-.item p{grid-column:1/-1;color:color-mix(in srgb,var(--paper-2) 78%,transparent);max-width:68ch}
-.item.special h4{color:var(--a1)}
-.item .chef{display:inline-block;font:600 .66rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;background:var(--a1);color:var(--ink);padding:5px 7px;margin-bottom:8px}
-
-/* projects as pinned cards */
-.pins{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:36px 32px}
-.card{background:var(--paper-2);border:2.5px solid var(--ink);padding:26px 24px 22px;position:relative;display:flex;flex-direction:column;gap:12px;min-width:0;box-shadow:6px 6px 0 var(--ink)}
-.card:nth-child(4n+1){transform:rotate(-.8deg)}
-.card:nth-child(4n+2){transform:rotate(.7deg)}
-.card:nth-child(4n+3){transform:rotate(.5deg)}
-.card:nth-child(4n+4){transform:rotate(-.6deg)}
-.card::before{content:"";position:absolute;top:-13px;left:50%;width:84px;height:24px;transform:translateX(-50%) rotate(-3deg);background:color-mix(in srgb,var(--a3) 85%,transparent);border:1px solid rgba(17,17,17,.15)}
-.card .kind{align-self:flex-start;font:600 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:6px 8px;border:2px solid var(--ink)}
-.card .kind.k-sales{background:var(--a2);color:var(--on-a2);border-color:var(--a2)}
-.card .kind.k-ai{background:var(--ink);color:var(--paper-2)}
-.card .kind.k-game{background:var(--a1)}
-.card .kind.k-job{background:var(--a3)}
-.card h3{font-size:clamp(2rem,3.6vw,2.6rem);font-weight:900}
-.card p{color:var(--ink-soft)}
-.stack{font:500 .78rem/1.5 var(--mono);color:var(--ink-soft)}
-.card .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
-.card .acts a{font:700 .92rem var(--body);text-decoration:none;border-bottom:2.5px solid var(--ink)}
-.card .acts a.play{background:var(--a1);border:2.5px solid var(--ink);padding:6px 14px;box-shadow:3px 3px 0 var(--ink)}
-.card .acts a.play::before{content:"▶ "}
-.card .acts a:hover{color:var(--a2);border-color:var(--a2)}
-.card .acts a.play:hover{color:var(--ink);border-color:var(--ink);background:var(--a3)}
-.card.wide{grid-column:1/-1}
-
-
-/* hangar: the one sci-fi room in the flyer. Fixed deep-space colors in every palette. */
-.hangar{--space:#060914;--hud:#7ef0ff;--hud-dim:rgba(126,240,255,.45);--star:#e8f4ff;position:relative;isolation:isolate;background:radial-gradient(ellipse at 80% 0%,#16204a 0%,transparent 55%),radial-gradient(ellipse at 0% 100%,#2a0f3a 0%,transparent 50%),var(--space);color:var(--star);padding-block:88px;margin-block:24px;overflow:hidden;border-block:3px solid var(--ink)}
-.hangar .stars{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
-.hud-label{font:600 .74rem/1.2 "Chakra Petch",var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--hud)}
-.hud-head{max-width:60ch;display:flex;flex-direction:column;gap:12px;margin-bottom:40px}
-.hangar h2{font:700 clamp(2.8rem,7vw,5rem)/.95 "Chakra Petch",var(--display);text-transform:uppercase;letter-spacing:.04em;color:#fff;text-shadow:0 0 24px rgba(126,240,255,.35)}
-.hud-sub{color:rgba(232,244,255,.78);font-size:1.08rem}
-.bays{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
-.bay{position:relative;padding:26px;background:rgba(10,16,36,.72);border:1px solid var(--hud-dim);display:flex;flex-direction:column;gap:14px;min-width:0;backdrop-filter:blur(2px)}
-.bay::before,.bay::after{content:"";position:absolute;width:18px;height:18px;border-color:var(--hud);border-style:solid}
-.bay::before{top:8px;left:8px;border-width:2px 0 0 2px}
-.bay::after{bottom:8px;right:8px;border-width:0 2px 2px 0}
-.bay-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.status{font:600 .7rem/1.2 "Chakra Petch",var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(232,244,255,.6);display:inline-flex;align-items:center;gap:8px}
-.status::before{content:"";width:8px;height:8px;border-radius:50%;background:rgba(232,244,255,.4)}
-.status.on{color:#8dffb5}.status.on::before{background:#3dff8a;box-shadow:0 0 10px #3dff8a}
-.bay h3{font:700 clamp(2rem,3.6vw,2.6rem)/1 "Chakra Petch",var(--display);text-transform:uppercase;letter-spacing:.03em;color:#fff}
-.bay p{color:rgba(232,244,255,.78)}
-.spec{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;margin:0;background:var(--hud-dim);border:1px solid var(--hud-dim)}
-.spec div{background:#0a1024;padding:10px 12px;min-width:0}
-.spec dt{font:600 .62rem/1.2 "Chakra Petch",var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--hud)}
-.spec dd{margin:4px 0 0;font:600 .95rem/1.2 var(--mono);color:#fff;font-variant-numeric:tabular-nums}
-.bay-acts{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:auto;padding-top:4px}
-.bay-acts a{font:600 .85rem/1 "Chakra Petch",var(--mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--hud);border-bottom:1px solid var(--hud-dim);padding-bottom:4px}
-.bay-acts a.launch{color:#060914;background:var(--hud);border:0;padding:12px 18px;box-shadow:0 0 18px rgba(126,240,255,.45)}
-.bay-acts a.launch::before{content:"\25B2  "}
-.bay-acts a:hover{color:#fff}.bay-acts a.launch:hover{background:#fff;color:#060914}
-@media (max-width:860px){.bays{grid-template-columns:minmax(0,1fr)}}
-
-/* about */
-.about{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:48px;align-items:start}
-.about .txt p{font-size:1.12rem;max-width:58ch}
-.about .txt p+p{margin-top:16px}
-.jobs{list-style:none;margin:0;padding:0;border-top:2.5px solid var(--ink)}
-.jobs li{display:flex;justify-content:space-between;gap:12px;padding-block:12px;border-bottom:1px solid color-mix(in srgb,var(--ink) 25%,transparent);flex-wrap:wrap}
-.jobs b{font:800 1.25rem/1.1 var(--display);text-transform:uppercase;letter-spacing:.02em}
-.jobs span{font:500 .8rem/1.6 var(--mono);color:var(--ink-soft)}
-.kit{margin-top:24px;font:500 .82rem/1.9 var(--mono);color:var(--ink-soft)}
-.kit b{color:var(--ink);font-weight:600}
-
-/* contact flyer with tear-off tabs */
-.flyer-sec{padding-block:24px 0}
-.flyer{background:var(--a1);border:3px solid var(--ink);border-bottom:0;padding:clamp(28px,5vw,56px) clamp(20px,4vw,48px) 32px;position:relative}
-.flyer h2{font-size:clamp(3rem,9vw,6.5rem);font-weight:900}
-.flyer p{font-size:1.15rem;margin-top:18px;max-width:46ch}
-.flyer .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:26px}
-.flyer .row .btn{background:var(--paper-2)}
-#copied{font:600 .85rem var(--mono)}
-.tabs{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));border:3px solid var(--ink);border-top:2px dashed var(--ink);background:var(--paper-2)}
-.tab{appearance:none;border:0;border-right:2px dashed var(--ink);background:transparent;padding:14px 4px;height:170px;cursor:pointer;color:var(--ink);display:flex;align-items:center;justify-content:center}
-.tab:last-child{border-right:0}
-.tab span{writing-mode:vertical-rl;transform:rotate(180deg);font:600 .78rem/1.2 var(--mono);white-space:nowrap}
-.tab span b{display:block;font:800 .95rem/1.1 var(--display);text-transform:uppercase;letter-spacing:.04em}
-.tab:hover{background:var(--a3)}
-@media (prefers-reduced-motion:no-preference){.tab{transition:transform .15s}.tab:hover{transform:rotate(2deg) translateY(4px)}}
-footer.base{padding-block:28px 40px;font:500 .82rem/1.6 var(--mono);color:var(--ink-soft)}
-footer.base .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-
-@media (max-width:860px){
-  .hero .grid{grid-template-columns:minmax(0,1fr)}
-  .reels{height:380px;max-width:440px;margin-inline:auto;width:100%}
-  .pins{grid-template-columns:minmax(0,1fr)}
-  .about{grid-template-columns:minmax(0,1fr);gap:32px}
-  .tabs{grid-template-columns:repeat(4,minmax(0,1fr))}
-  .tab:nth-child(n+5){display:none}
-  .tab:nth-child(4){border-right:0}
-}
-@media (max-width:520px){
-  .strip nav{display:none}
-  .reel{width:136px;padding:10px}
-  .reel .cap{display:none}
-  .sticker{width:108px;height:108px;font-size:1.5rem;right:0}
-  .r2{left:27%}.r3{left:54%}
-}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <div class="strip">
   <div class="wrap">
-    <a href="#top" class="label">Caleb Zinabu · Wichita, KS</a>
-    <nav class="label" aria-label="Sections">
-      <a href="#menu">Services</a><a href="#work">Work</a><a href="#games">Games</a><a href="#about">About</a><a href="#contact">Contact</a>
-    </nav>
+    <a href="index.html" class="label">Caleb Zinabu · Wichita, KS</a>
+    <nav class="label" aria-label="Pages"><a href="index.html" aria-current="page">Home</a><a href="work.html">Work</a><a href="games.html">Games</a><a href="index.html#contact">Contact</a></nav>
   </div>
 </div>
 <div class="ticker" aria-hidden="true">
@@ -226,7 +33,7 @@ footer.base .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:
         <p class="lede">For a year I ran social media for a Wichita restaurant. Our short videos starring the staff, regulars and owner pulled <b>7.8M+ views</b>. I also build small AI tools and websites that take busywork off an owner's plate.</p>
         <div class="cta">
           <a class="btn pink" href="#contact">Talk about your business</a>
-          <a class="btn" href="#work">See what I've built</a>
+          <a class="btn" href="work.html">See what I've built</a>
         </div>
       </div>
       <div class="reels" aria-label="Top videos by public view count">
@@ -237,6 +44,7 @@ footer.base .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:
       </div>
     </div>
   </section>
+
 
   <section class="sec" id="menu" style="padding-top:24px">
     <div class="wrap">
@@ -268,86 +76,25 @@ footer.base .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:
     </div>
   </section>
 
-  <section class="sec" id="work">
-    <div class="wrap">
-      <div class="sec-head"><h2>Things I've built</h2><p class="label">Claude or a free local model · Your data stays yours</p></div>
-      <div class="pins">
-        <article class="card">
-          <span class="kind k-job">Job search</span>
-          <h3>Rolevisor</h3>
-          <p>Reads your resume and a job posting, then rewrites the resume for that job. You get a match score, the skills you have and are missing, and a list of what changed and why.</p>
-          <p class="stack">Next.js · TypeScript · Claude API · Ollama / LM Studio</p>
-          <div class="acts"><a class="play" href="https://rolevisor.vercel.app">Try it live</a><a href="https://github.com/czinabu/rolevisor">Code</a></div>
-        </article>
-        <article class="card">
-          <span class="kind k-sales">Sales</span>
-          <h3>Inroad</h3>
-          <p>Drafts first-touch outreach for one prospect: a LinkedIn note, a cold email and a phone opener, tuned to their industry. It tracks every follow-up and shows who's due today.</p>
-          <p class="stack">JavaScript · Node.js · Claude API · Ollama / LM Studio</p>
-          <div class="acts"><a href="https://github.com/czinabu/inroad-outreach">Code</a></div>
-        </article>
-        <article class="card">
-          <span class="kind k-sales">Sales</span>
-          <h3>Objection handler</h3>
-          <p>A one-screen helper for live sales calls. Type a word the prospect said, like "price" or "busy", and the rebuttal and close appear. It logs which lines win and works offline.</p>
-          <p class="stack">JavaScript · HTML · Works offline</p>
-          <div class="acts"><a href="https://github.com/czinabu/sdr-objection-handler">Code</a></div>
-        </article>
-        <article class="card">
-          <span class="kind k-ai">Local AI</span>
-          <h3>Doc generator + refactor dashboard</h3>
-          <p>Two self-hosted tools that write documentation for Python code and suggest cleaner versions of it, using a model on your own machine so the code never leaves it.</p>
-          <p class="stack">Python · FastAPI · Ollama</p>
-          <div class="acts"><a href="https://github.com/czinabu/code-documentation-generator">Doc generator code</a><a href="https://github.com/czinabu/local-refactor-dashboard">Refactor code</a></div>
-        </article>
-      </div>
-    </div>
-  </section>
 
-  <section class="hangar" id="games" aria-labelledby="hangar-h">
-    <canvas class="stars" aria-hidden="true"></canvas>
+  <section class="sec" id="more" style="padding-top:8px">
     <div class="wrap">
-      <div class="hud-head">
-        <p class="hud-label">// Off-hours log · Sector Wichita</p>
-        <h2 id="hangar-h">The hangar</h2>
-        <p class="hud-sub">Sci-fi is my favorite thing, so after work I build space games in the browser with Three.js. No asset files: every ship, sound and song is generated in code.</p>
-      </div>
-      <div class="bays">
-        <article class="bay">
-          <div class="bay-top"><span class="hud-label">Bay 01</span><span class="status on">Online · Playable</span></div>
-          <h3>Power Trip</h3>
-          <p>A third-person action game with online co-op, plus a Windows desktop app that updates itself.</p>
-          <dl class="spec"><div><dt>Engine</dt><dd>Three.js</dd></div><div><dt>Mode</dt><dd>Co-op</dd></div><div><dt>Ships to</dt><dd>Web + Windows</dd></div></dl>
-          <div class="bay-acts"><a class="launch" href="https://sw-power-trip.vercel.app">Launch</a><a href="https://github.com/czinabu/power-trip">Source</a></div>
-        </article>
-        <article class="bay">
-          <div class="bay-top"><span class="hud-label">Bay 02</span><span class="status on">Online · Playable</span></div>
-          <h3>Neon Trench</h3>
-          <p>A cyberpunk trench-run flight game with a five-mission campaign, three unlockable ships and an upgrade workshop.</p>
-          <dl class="spec"><div><dt>Engine</dt><dd>Three.js</dd></div><div><dt>Missions</dt><dd>5</dd></div><div><dt>Ships</dt><dd>3</dd></div></dl>
-          <div class="bay-acts"><a class="launch" href="https://neon-trench.vercel.app/">Launch</a><a href="https://github.com/czinabu/neon-trench">Source</a></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="about" style="padding-top:24px">
-    <div class="wrap">
-      <div class="sec-head"><h2>About me</h2><p class="label">Sales and support by day · Builder by habit</p></div>
-      <div class="about">
-        <div class="txt">
-          <p>I've spent the last few years talking to customers all day, so I know what a busy owner needs to hear and how to keep things simple.</p>
-          <p>I studied computer science and engineering at the University of Kansas and Wichita State, and I run my own home lab for AI tools. When something at work is repetitive, I build a tool for it.</p>
-        </div>
-        <div>
-          <ul class="jobs">
-            <li><b>Sunrun</b><span>Sales development rep</span></li>
-            <li><b>Wichita restaurant</b><span>Social media, 1 year</span></li>
-            <li><b>Fidelity Bank</b><span>Senior contact center banker</span></li>
-            <li><b>KU Robotics</b><span>PR executive</span></li>
-          </ul>
-          <p class="kit"><b>Tools:</b> Claude · Claude Code · Ollama · Qwen · JavaScript · TypeScript · Python · FastAPI · Three.js · Docker · Linux · Tailscale · Salesforce · HubSpot · TikTok · Instagram · Facebook</p>
-        </div>
+      <div class="sec-head"><h2>See more</h2><p class="label">Two more pages</p></div>
+      <div class="doors">
+        <a class="door" href="work.html">
+          <span class="lab">Portfolio</span>
+          <h3>Things I've built</h3>
+          <p>The AI tools I made for my own sales and job-search work, plus my background.</p>
+          <ul><li>Rolevisor: tailors a resume to a job posting</li><li>Inroad: writes and tracks sales outreach</li><li>A live-call objection handler and two local AI tools</li></ul>
+          <span class="go">See the work →</span>
+        </a>
+        <a class="door dark" href="games.html">
+          <span class="lab">The hangar</span>
+          <h3>Space games</h3>
+          <div class="shots"><img src="img/nt-trench.jpg" alt="Neon Trench: flying down a glowing trench" loading="lazy"><img src="img/pt-archive.jpg" alt="Power Trip: a fight in a golden archive hall" loading="lazy"><img src="img/nt-cockpit.jpg" alt="Neon Trench: the cockpit during a carrier launch" loading="lazy"></div>
+          <p>Two browser games I build after hours with Three.js. Both are playable right now.</p>
+          <span class="go">Enter the hangar →</span>
+        </a>
       </div>
     </div>
   </section>
@@ -393,22 +140,6 @@ footer.base .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:
       if(b.classList.contains('tab')){b.style.visibility='hidden';}
     });
   });
-})();
-</script>
-
-
-<script>
-(function(){
-  var c=document.querySelector('.hangar .stars'); if(!c||!c.getContext) return;
-  var x=c.getContext('2d'),stars=[],w,h,dpr=Math.min(window.devicePixelRatio||1,2);
-  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function size(){var r=c.getBoundingClientRect();w=r.width;h=r.height;c.width=w*dpr;c.height=h*dpr;x.setTransform(dpr,0,0,dpr,0,0);
-    stars=[];var n=Math.round(w*h/2600);for(var i=0;i<n;i++)stars.push({x:Math.random()*w,y:Math.random()*h,z:Math.random()*0.9+0.1});}
-  function draw(){x.clearRect(0,0,w,h);for(var i=0;i<stars.length;i++){var s=stars[i];
-    if(!still){s.x-=s.z*0.25;if(s.x<0){s.x=w;s.y=Math.random()*h;}}
-    x.globalAlpha=0.25+s.z*0.75;x.fillStyle='#e8f4ff';x.fillRect(s.x,s.y,s.z*1.8,s.z*1.8);}
-    if(!still)requestAnimationFrame(draw);}
-  size();draw();window.addEventListener('resize',function(){size();if(still)draw();});
 })();
 </script>
 </body>
